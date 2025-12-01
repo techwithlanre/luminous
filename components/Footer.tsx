@@ -1,9 +1,47 @@
-import React from 'react';
-import { Facebook, Twitter, Instagram, Linkedin, ArrowUp } from 'lucide-react';
+import React, { useState } from 'react';
+import { Facebook, Twitter, Instagram, Linkedin, ArrowUp, Loader2, Check } from 'lucide-react';
 
 const Footer: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setStatus('loading');
+
+    // TODO: Replace this URL with your actual Loops.so form action URL
+    // You can find this in Loops > Forms > (Create/Select Form) > Overview/Embed
+    const LOOPS_ENDPOINT = "https://app.loops.so/api/newsletter-form/clpimip6z0151ia0o1q2uyg7d";
+
+    try {
+      const formBody = `userGroup=Newsletter&email=${encodeURIComponent(email)}`;
+      
+      const response = await fetch(LOOPS_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formBody,
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setEmail('');
+        // Reset success message after 5 seconds
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error('Subscription error:', error);
+      setStatus('error');
+    }
   };
 
   return (
@@ -55,17 +93,49 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-bold text-lg mb-6 text-white">Newsletter</h4>
             <p className="text-gray-400 text-sm mb-4">Subscribe to get the latest tech insights.</p>
-            <form className="flex flex-col space-y-3">
+            
+            <form onSubmit={handleSubscribe} className="flex flex-col space-y-3">
               <label htmlFor="newsletter-email" className="sr-only">Email address</label>
-              <input
-                id="newsletter-email"
-                type="email"
-                placeholder="Your email"
-                className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 focus:outline-none focus:border-primary transition-colors text-sm text-white"
-              />
-              <button type="submit" className="bg-primary text-white font-bold py-2 rounded-lg hover:bg-orange-600 transition-colors text-sm cursor-pointer">
-                Subscribe
+              <div className="relative">
+                <input
+                  id="newsletter-email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Your email"
+                  required
+                  disabled={status === 'loading' || status === 'success'}
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-sm text-white disabled:opacity-50"
+                />
+                {status === 'success' && (
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 text-green-500">
+                    <Check size={18} />
+                  </div>
+                )}
+              </div>
+              
+              <button 
+                type="submit" 
+                disabled={status === 'loading' || status === 'success'}
+                className={`bg-primary text-white font-bold py-2 rounded-lg transition-all duration-300 text-sm cursor-pointer flex items-center justify-center gap-2 ${
+                  status === 'success' ? 'bg-green-600 hover:bg-green-700' : 'hover:bg-orange-600'
+                }`}
+              >
+                {status === 'loading' ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" />
+                    <span>Subscribing...</span>
+                  </>
+                ) : status === 'success' ? (
+                  <span>Subscribed!</span>
+                ) : (
+                  <span>Subscribe</span>
+                )}
               </button>
+              
+              {status === 'error' && (
+                <p className="text-red-500 text-xs mt-1">Something went wrong. Please try again.</p>
+              )}
             </form>
           </div>
         </div>

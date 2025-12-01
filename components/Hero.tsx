@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, Users, Code2, PenTool } from 'lucide-react';
@@ -15,7 +16,10 @@ const Hero: React.FC = () => {
         <div className="absolute top-[20%] right-[10%] w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[100px] opacity-30"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+      <motion.div 
+        className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center"
+        style={{ y: y1 }}
+      >
         
         {/* Tagline */}
         <motion.div
@@ -31,8 +35,7 @@ const Hero: React.FC = () => {
 
         {/* Headline */}
         <motion.h1
-          className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-8 leading-[1.1] tracking-tight max-w-6xl"
-          style={{ y: y1 }}
+          className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-8 leading-tight tracking-tight max-w-6xl"
         >
           <div className="overflow-hidden p-2">
             <motion.div
@@ -118,7 +121,7 @@ const Hero: React.FC = () => {
             <div className="w-32 h-[1px] bg-primary absolute bottom-0 left-0"></div>
         </motion.div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };
