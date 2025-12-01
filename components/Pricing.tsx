@@ -14,10 +14,10 @@ const Pricing: React.FC = () => {
                 transition={{ duration: 0.8 }}
             >
                  <span className="px-4 py-1 rounded-full border border-primary/30 text-primary text-sm bg-primary/5 uppercase tracking-wider mb-4 inline-block">
-                    Catalog
+                    Services Catalog
                 </span>
-                <h2 className="text-4xl md:text-7xl font-heading font-bold mb-6 text-white">Our Services</h2>
-                <p className="text-gray-400 max-w-2xl mx-auto text-lg">Comprehensive digital solutions specifically tailored to scale your business. Choose your package and let's build the future.</p>
+                <h2 className="text-4xl md:text-7xl font-heading font-bold mb-6 text-white">Our Service Offerings</h2>
+                <p className="text-gray-400 max-w-2xl mx-auto text-lg">Comprehensive digital solutions specifically tailored to scale your business.</p>
             </motion.div>
         </div>
 
@@ -38,7 +38,7 @@ const Pricing: React.FC = () => {
               </motion.div>
 
               {/* Cards Grid */}
-              <div className={`grid grid-cols-1 md:grid-cols-2 ${section.cards.length === 1 ? 'lg:grid-cols-1 max-w-4xl' : 'lg:grid-cols-3'} gap-8 mx-auto`}>
+              <div className={`grid grid-cols-1 md:grid-cols-2 ${section.cards.length === 1 ? 'lg:grid-cols-1 max-w-4xl' : 'lg:grid-cols-2'} gap-8 mx-auto`}>
                 {section.cards.map((card, index) => (
                   <motion.div
                     key={index}

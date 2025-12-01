@@ -1,593 +1,232 @@
 import { 
   Rocket, Code, Palette, Smartphone, Globe, Megaphone, 
-  BarChart, Layers, Zap, Shield, Users, Award 
+  BarChart, Layers, Zap, Shield, Users, Award, 
+  Server, ShoppingCart, CreditCard, Activity, Truck, GraduationCap
 } from 'lucide-react';
-import { Service, Project, TimelineItem, Testimonial, Stat, PricingSection, TeamMember } from './types';
+import { Service, Project, TimelineItem, Testimonial, Stat, PricingSection, TeamMember, Industry } from './types';
+
+export const HERO_CONTENT = {
+  headlineStart: "Build Scalable Digital Products",
+  headlineEnd: "That Grow With You",
+  subheadline: "From MVP to enterprise-ready platforms, we design, develop, and launch powerful solutions that scale with your vision.",
+  ctaPrimary: "Let’s Build Your Product",
+  ctaSecondary: "View Our Work"
+};
+
+export const ABOUT_CONTENT = {
+  headlineStart: "Your Product Partner From",
+  headlineEnd: "Idea to Impact",
+  p1: "We’re a digital product development company dedicated to transforming innovative ideas into scalable, market-ready solutions. Whether you’re launching your MVP or scaling to meet enterprise demands, our team brings deep expertise in design, development, and growth to every stage of your product lifecycle.",
+  p2: "We blend product thinking, modern technology, and agile execution to deliver exceptional user experiences and business outcomes."
+};
 
 export const SERVICES: Service[] = [
   {
     id: '1',
-    title: 'Digital Strategy',
-    description: 'Data-driven roadmaps to navigate the digital landscape and achieve business goals.',
-    icon: BarChart,
+    title: 'Product Strategy & MVP',
+    description: 'Validate your idea quickly. We help you define your MVP with clarity, speed, and precision to get to market faster and smarter.',
+    icon: Rocket,
   },
   {
     id: '2',
-    title: 'Web Development',
-    description: 'High-performance, scalable web applications built with modern technologies.',
-    icon: Code,
+    title: 'Custom Web & Mobile',
+    description: 'Build cross-platform digital products using modern frameworks and best practices. Scalable, secure, and performance-driven.',
+    icon: Smartphone,
   },
   {
     id: '3',
     title: 'UI/UX Design',
-    description: 'Immersive, user-centric designs that delight and engage your audience.',
+    description: 'Create intuitive, delightful user experiences with design systems that evolve as your product grows.',
     icon: Palette,
   },
   {
     id: '4',
-    title: 'Mobile Apps',
-    description: 'Native and cross-platform mobile solutions for iOS and Android.',
-    icon: Smartphone,
+    title: 'DevOps & Scalability',
+    description: 'Infrastructure that scales with your business. Automated pipelines, cloud-native architecture, and performance optimization.',
+    icon: Server,
   },
+  {
+    id: '5',
+    title: 'Enterprise Transformation',
+    description: 'Upgrade legacy systems, integrate modern technologies, and future-proof your enterprise platforms.',
+    icon: Layers,
+  },
+];
+
+export const INDUSTRIES: Industry[] = [
+  { id: '1', name: 'SaaS & Startups', icon: Rocket },
+  { id: '2', name: 'E-commerce', icon: ShoppingCart },
+  { id: '3', name: 'Fintech', icon: CreditCard },
+  { id: '4', name: 'Healthcare', icon: Activity },
+  { id: '5', name: 'Logistics', icon: Truck },
+  { id: '6', name: 'EdTech', icon: GraduationCap },
 ];
 
 export const PORTFOLIO: Project[] = [
   {
     id: '1',
-    title: 'Nebula Finance',
-    category: 'web',
-    image: 'https://picsum.photos/seed/nebula/800/600',
-    description: 'A next-gen decentralized finance dashboard with real-time analytics.',
+    title: 'ScaleUp SaaS Platform',
+    category: 'saas',
+    image: 'https://picsum.photos/seed/saasproj/800/600',
+    description: 'A comprehensive management platform for remote teams.',
+    problem: 'The client needed a scalable way to manage distributed teams but existing tools were clunky and slow.',
+    solution: 'We built a React/Node.js based platform with real-time collaboration features and automated workflows.',
+    outcome: 'Launched in 12 weeks, scaling to 10,000+ daily active users within 6 months.',
+    techStack: ['React', 'Node.js', 'AWS', 'WebSockets']
   },
   {
     id: '2',
-    title: 'Aero Fitness',
-    category: 'mobile',
-    image: 'https://picsum.photos/seed/aero/800/600',
-    description: 'Social fitness tracking application with AR workout guides.',
+    title: 'SwiftPay Fintech App',
+    category: 'fintech',
+    image: 'https://picsum.photos/seed/fintechproj/800/600',
+    description: 'Mobile-first payment solution for gig economy workers.',
+    problem: 'Gig workers faced delays in receiving payments and high transaction fees.',
+    solution: 'Developed a secure mobile app with instant payout integration and low-fee transfer logic.',
+    outcome: 'Processed $5M+ in transactions in the first quarter with 99.99% uptime.',
+    techStack: ['React Native', 'Python', 'Stripe API', 'PostgreSQL']
   },
   {
     id: '3',
-    title: 'Lumina Brand',
-    category: 'branding',
-    image: 'https://picsum.photos/seed/lumina/800/600',
-    description: 'Complete brand identity overhaul for a renewable energy startup.',
-  },
-  {
-    id: '4',
-    title: 'Orbit Market',
-    category: 'marketing',
-    image: 'https://picsum.photos/seed/orbit/800/600',
-    description: 'Omnichannel marketing campaign resulting in 300% ROI.',
-  },
-  {
-    id: '5',
-    title: 'Zenith Architecture',
-    category: 'web',
-    image: 'https://picsum.photos/seed/zenith/800/600',
-    description: 'Minimalist portfolio site for an award-winning architecture firm.',
-  },
-  {
-    id: '6',
-    title: 'Echo Stream',
-    category: 'mobile',
-    image: 'https://picsum.photos/seed/echo/800/600',
-    description: 'Music streaming service with AI-powered personalized playlists.',
+    title: 'LearnLoop EdTech',
+    category: 'enterprise',
+    image: 'https://picsum.photos/seed/edtechproj/800/600',
+    description: 'AI-driven personalized learning path generator for universities.',
+    problem: 'Universities struggled to offer personalized curriculum guidance at scale.',
+    solution: 'Integrated an AI engine to analyze student performance and suggest tailored learning modules.',
+    outcome: 'Adopted by 5 major universities, improving student retention rates by 15%.',
+    techStack: ['Next.js', 'OpenAI API', 'Python', 'Azure']
   },
 ];
 
 export const TIMELINE: TimelineItem[] = [
   {
-    year: '2018',
-    title: 'Inception',
-    description: 'Founded in a small garage with a big vision for digital transformation.',
+    year: 'Phase 1',
+    title: 'Discovery',
+    description: 'We dive deep into your business goals, user needs, and market landscape.',
   },
   {
-    year: '2020',
-    title: 'Global Expansion',
-    description: 'Opened offices in London and Tokyo, expanding our reach to 3 continents.',
+    year: 'Phase 2',
+    title: 'Design & Proto',
+    description: 'Creating high-fidelity prototypes to validate UX before writing code.',
   },
   {
-    year: '2022',
-    title: 'Innovation Award',
-    description: 'Recognized as "Top Digital Innovator" by TechWeekly for our AI tools.',
+    year: 'Phase 3',
+    title: 'Development',
+    description: 'Agile sprints to build scalable, clean, and tested code.',
   },
   {
-    year: '2024',
-    title: 'Future Forward',
-    description: 'Launching our proprietary Cloudom Engine for immersive web experiences.',
+    year: 'Phase 4',
+    title: 'Launch & Scale',
+    description: 'Deploying to production and optimizing for user growth.',
   },
 ];
 
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: '1',
-    name: 'Sarah Jenkins',
-    role: 'CMO',
-    company: 'TechFlow',
-    content: "The attention to detail and animation quality is unlike anything we've seen. Cloudom truly elevated our brand.",
-    avatar: 'https://picsum.photos/seed/sarah/100/100',
+    name: 'Michael Ross',
+    role: 'CTO',
+    company: 'SaaS Startup',
+    content: "They helped us launch a product in weeks that we thought would take months — and it scaled to thousands of users without a hitch.",
+    avatar: 'https://picsum.photos/seed/michael/100/100',
     rating: 5,
   },
   {
     id: '2',
-    name: 'David Chen',
-    role: 'Founder',
-    company: 'StartUp Inc',
-    content: "Professional, timely, and incredibly talented. The ROI on our new website was immediate.",
-    avatar: 'https://picsum.photos/seed/david/100/100',
+    name: 'Sarah Lin',
+    role: 'Product Manager',
+    company: 'FinTech Solutions',
+    content: "The team's understanding of complex financial compliance combined with top-tier UX design was exactly what we needed.",
+    avatar: 'https://picsum.photos/seed/sarah/100/100',
     rating: 5,
-  },
-  {
-    id: '3',
-    name: 'Elena Rodriguez',
-    role: 'Product Lead',
-    company: 'Innovate',
-    content: "They understood our vision perfectly and executed it with technical precision.",
-    avatar: 'https://picsum.photos/seed/elena/100/100',
-    rating: 4,
   },
 ];
 
 export const STATS: Stat[] = [
-  { id: '1', label: 'Projects Completed', value: 250, suffix: '+' },
-  { id: '2', label: 'Happy Clients', value: 120, suffix: '+' },
-  { id: '3', label: 'Awards Won', value: 15, suffix: '' },
-  { id: '4', label: 'Years Experience', value: 6, suffix: '' },
+  { id: '1', label: 'Products Launched', value: 85, suffix: '+' },
+  { id: '2', label: 'Active Users', value: 500, suffix: 'K+' },
+  { id: '3', label: 'Enterprise Clients', value: 20, suffix: '+' },
+  { id: '4', label: 'Team Experts', value: 45, suffix: '' },
 ];
 
 export const PRICING_SECTIONS: PricingSection[] = [
   {
-    id: 'web-dev',
-    title: 'Web',
+    id: 'mvp-dev',
+    title: 'MVP',
     highlightWord: 'Development',
     cards: [
       {
-        title: 'Standard Website Package',
-        price: '$2,000 - $3,000',
-        subtitle: '(one-time project fee) Timeline: 2-4 weeks',
-        buttonText: 'Secure your spot',
+        title: 'Validation Sprint',
+        price: 'Strategy Phase',
+        subtitle: '2-3 Weeks',
+        buttonText: 'Start Discovery',
         features: [
-          'WordPress or custom HTML/CSS website (up to 7 pages)',
-          'Mobile responsive design',
-          'Basic SEO optimization',
-          'Contact forms & Google Analytics',
-          '2 rounds of revisions',
-          'Custom UI Designs Using Figma'
+          'Market analysis & User research',
+          'Product roadmap definition',
+          'Technical feasibility study',
+          'Clickable prototype'
         ]
       },
       {
-        title: 'Advanced Website Package',
-        price: '$4,000 - $15,000',
-        subtitle: '(one-time project fee) Timeline: 6-10 weeks',
-        buttonText: 'Secure Your Spot',
+        title: 'MVP Build',
+        price: 'Development Phase',
+        subtitle: '8-12 Weeks',
+        buttonText: 'Build MVP',
         features: [
-          'WordPress or custom development (up to 15 pages)',
-          'Advanced responsive design',
-          'Enhanced SEO optimization',
-          'E-commerce functionality (if needed)',
-          'Interactive elements',
-          '3 rounds of revisions',
-          'Custom UI Designs Using Figma'
-        ]
-      },
-      {
-        title: 'Shopify Store',
-        price: '$2,000 - $5,000',
-        subtitle: '(one-time project fee)',
-        buttonText: 'Secure Your Spot',
-        features: [
-          'Custom E-commerce: $15,000 - $40,000 (one-time project fee)',
-          'Payment gateway integration: $500 per gateway',
-          'Inventory management: $1,500',
-          'Customer loyalty programs: $2,000'
+          'Core feature implementation',
+          'Web or Mobile platform',
+          'Cloud infrastructure setup',
+          'Launch support'
         ]
       }
     ]
   },
   {
-    id: 'mobile-app',
-    title: 'Mobile App',
-    highlightWord: 'Development',
+    id: 'custom-dev',
+    title: 'Custom',
+    highlightWord: 'Software',
     cards: [
       {
-        title: 'MVP Mobile App',
-        price: '$15,000 - $25,000',
-        subtitle: '(one-time project fee)',
-        buttonText: 'Secure your spot',
+        title: 'Web Platform',
+        price: 'Custom Quote',
+        subtitle: 'Scalable Web Applications',
+        buttonText: 'Discuss Project',
         features: [
-          'iOS or Android platform',
-          'Core functionality',
-          'Basic UI/UX design',
-          'Backend integration',
-          'App Store submission'
-        ]
-      },
-      {
-        title: 'Professional Mobile App',
-        price: '$30,000 - $60,000',
-        subtitle: '(one-time project fee)',
-        buttonText: 'Secure Your Spot',
-        features: [
-          'Cross-platform development',
-          'Advanced UI/UX design',
-          'Full backend integration',
-          'Authentication systems',
-          'Push notifications',
-          'Analytics'
-        ]
-      },
-      {
-        title: 'Enterprise Mobile Solutions',
-        price: 'Starting from $75,000+',
-        subtitle: 'Custom quote based on requirements',
-        buttonText: 'Secure Your Spot',
-        features: [
-          'Native development for all platforms',
-          'Custom backend development',
+          'React / Next.js / Vue',
+          'Secure backend API',
           'Third-party integrations',
-          'Advanced security features',
-          'Scalable architecture'
+          'SEO optimized'
+        ]
+      },
+      {
+        title: 'Mobile Application',
+        price: 'Custom Quote',
+        subtitle: 'iOS & Android',
+        buttonText: 'Discuss Project',
+        features: [
+          'React Native / Flutter',
+          'Native performance',
+          'App Store & Play Store deployment',
+          'Offline capabilities'
         ]
       }
     ]
   },
   {
-    id: 'ai-solutions',
-    title: 'AI',
+    id: 'enterprise',
+    title: 'Enterprise',
     highlightWord: 'Solutions',
     cards: [
       {
-        title: 'Basic AI Implementation',
-        price: '$5,000 - $10,000',
-        subtitle: '(one-time fee)',
-        buttonText: 'Secure your spot',
+        title: 'Digital Transformation',
+        price: 'Enterprise',
+        subtitle: 'Long-term partnership',
+        buttonText: 'Contact Sales',
         features: [
-          'Single OpenAI API integration',
-          'Basic prompt engineering',
-          'Simple user interface',
-          'Backend integration',
-          'App Store submission'
-        ]
-      },
-      {
-        title: 'Advanced AI Implementation',
-        price: '$15,000 - $30,000',
-        subtitle: '(one-time fee)',
-        buttonText: 'Secure Your Spot',
-        features: [
-          'Multiple AI model integrations',
-          'Complex prompt engineering',
-          'Custom user interfaces',
-          'Basic analytics'
-        ]
-      },
-      {
-        title: 'AI Startup MVP',
-        price: '$20,000 - $50,000',
-        subtitle: '',
-        buttonText: 'Secure Your Spot',
-        features: [
-          'Requirements analysis',
-          'Core feature development',
-          'Basic design implementation',
-          'Minimal viable deployment'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'programmatic-seo',
-    title: 'Programmatic',
-    highlightWord: 'SEO',
-    cards: [
-      {
-        title: 'Starter SEO',
-        price: '$2,997',
-        subtitle: '',
-        buttonText: 'Secure your spot',
-        features: [
-          'Automated keyword research (long-tail focus)',
-          '10 programmatically generated landing pages',
-          'On-page SEO optimization',
-          'Monthly SEO performance report'
-        ]
-      },
-      {
-        title: 'Growth SEO',
-        price: '$5,997',
-        subtitle: '',
-        buttonText: 'Secure your spot',
-        features: [
-          'Automated keyword clusters (100+ keywords)',
-          '50 programmatic landing pages',
-          'Schema markup implementation',
-          'Internal linking automation',
-          'Bi-weekly performance reports'
-        ]
-      },
-      {
-        title: 'Enterprise SEO',
-        price: '$15,997',
-        subtitle: '',
-        buttonText: 'Secure your spot',
-        features: [
-          'End-to-end programmatic SEO setup',
-          'Unlimited landing page generation',
-          'Custom database + CMS integration',
-          'Technical SEO audits & fixes',
-          'Dedicated account manager',
-          'Weekly strategy calls'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'branding-design',
-    title: 'Branding',
-    highlightWord: 'Design',
-    cards: [
-      {
-        title: 'Basic Branding Design',
-        price: '$1,997',
-        subtitle: '',
-        buttonText: 'Secure your spot',
-        features: [
-          'Logo & color palette',
-          'Typography recommendations',
-          '1-page brand sheet',
-          'Delivery in 5-7 days'
-        ]
-      },
-      {
-        title: 'Advanced Branding Design',
-        price: '$4,997',
-        subtitle: '',
-        buttonText: 'Secure Your Spot',
-        features: [
-          'Logo, colors, typography, iconography',
-          'Brand voice guidelines',
-          '5-page brand guide (PDF)',
-          '3 rounds of revisions'
-        ]
-      },
-      {
-        title: 'Enterprise Branding Design',
-        price: '$12,997',
-        subtitle: '',
-        buttonText: 'Secure Your Spot',
-        features: [
-          'Full brand strategy document',
-          'Complete visual identity system',
-          'Brand book (10+ pages)',
-          'Brand usage templates (social, print, etc.)'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'product-design',
-    title: 'Product',
-    highlightWord: 'Design',
-    cards: [
-      {
-        title: 'Basic Product Design',
-        price: '$1,497',
-        subtitle: '',
-        buttonText: 'Secure your spot',
-        features: [
-          'Wireframes for 2 screens/pages',
-          '1 revision',
-          'Delivery in 5 days',
-          'PNG exports only'
-        ]
-      },
-      {
-        title: 'Advanced Product Design',
-        price: '$3,997',
-        subtitle: '',
-        buttonText: 'Secure Your Spot',
-        features: [
-          'High-fidelity UI for 5 screens',
-          '3 revisions',
-          'Clickable prototype (Figma/Adobe XD)',
-          'Design system components included'
-        ]
-      },
-      {
-        title: 'Enterprise Product Design',
-        price: '$8,997',
-        subtitle: '',
-        buttonText: 'Secure Your Spot',
-        features: [
-          'End-to-end design of 10+ screens',
-          'Unlimited revisions',
-          'Design collaboration & dev handoff',
-          'Responsive/mobile-ready design'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'logo-designs',
-    title: 'Logo',
-    highlightWord: 'Designs',
-    cards: [
-      {
-        title: 'Basic Logo Design',
-        price: '$1,497',
-        subtitle: '',
-        buttonText: 'Secure your spot',
-        features: [
-          'Single logo concept',
-          '2 revisions',
-          'High-resolution PNG & JPEG',
-          'Delivery in 3 days'
-        ]
-      },
-      {
-        title: 'Advanced Logo Design',
-        price: '$3,497',
-        subtitle: '',
-        buttonText: 'Secure Your Spot',
-        features: [
-          '4 initial logo concepts',
-          '4 revisions',
-          'Vector files (AI, EPS, SVG) included',
-          'Transparent and dark/light background versions'
-        ]
-      },
-      {
-        title: 'Enterprise Logo Design',
-        price: '$7,997',
-        subtitle: '',
-        buttonText: 'Secure Your Spot',
-        features: [
-          '6+ logo concepts',
-          'Full revisions',
-          'Complete brand style guide',
-          'Social media-ready logo versions'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'graphics-designs',
-    title: 'Graphics',
-    highlightWord: 'Designs',
-    cards: [
-      {
-        title: 'Basic Design',
-        price: '$997',
-        subtitle: '',
-        buttonText: 'Secure your spot',
-        features: [
-          '3 design assets',
-          '2 revisions per design',
-          'Standard resolution (72 DPI for web)',
-          'Delivery in 3-5 days'
-        ]
-      },
-      {
-        title: 'Advanced Graphics Design',
-        price: '$2,497',
-        subtitle: '',
-        buttonText: 'Secure Your Spot',
-        features: [
-          '6 design assets',
-          '5 revisions per design',
-          'Print-ready files (300 DPI)',
-          'Source files included (PSD, AI)'
-        ]
-      },
-      {
-        title: 'Enterprise Graphics Design',
-        price: '$5,997',
-        subtitle: '',
-        buttonText: 'Secure Your Spot',
-        features: [
-          '10+ design assets',
-          'Full revisions',
-          'Priority delivery',
-          'Multi-format exports for web & print',
-          'Social media-ready versions'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'cloud-infrastructure',
-    title: 'Cloud &',
-    highlightWord: 'Infrastructure Services',
-    cards: [
-      {
-        title: 'Cloud Setup (One-time Fees)',
-        price: '$2,500 - $5,000',
-        subtitle: 'Basic Cloud Setup',
-        buttonText: 'Secure your spot',
-        features: [
-          'Advanced Cloud Architecture: $7,500 - $15,000',
-          'Enterprise Cloud Migration: $20,000+'
-        ]
-      },
-      {
-        title: 'Amazon SES Email Setup',
-        price: '$1,000',
-        subtitle: '(up to 10,000 emails/month)',
-        buttonText: 'Secure Your Spot',
-        features: [
-          'Standard Setup: $2,500 (up to 100,000 emails/month)',
-          'Enterprise Setup: $5,000+ (millions of emails/month)'
-        ]
-      },
-      {
-        title: 'Cloud Management (Monthly Subscription)',
-        price: '$500 /month',
-        subtitle: 'Basic Monitoring',
-        buttonText: 'Secure Your Spot',
-        features: [
-          'Standard Management: $1,500 /month',
-          'Premium Management: $3,000 /month',
-          'Enterprise Management: $5,000+ /month'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'strategic-packages',
-    title: 'Strategic',
-    highlightWord: 'Packages',
-    cards: [
-      {
-        title: 'Startup MVP',
-        price: '$20,000 - $40,000',
-        subtitle: '',
-        buttonText: 'Secure your spot',
-        features: [
-          'Requirements analysis',
-          'Core feature development',
-          'Basic design implementation',
-          'Minimal viable deployment'
-        ]
-      },
-      {
-        title: 'Growth MVP',
-        price: '$45,000 - $75,000',
-        subtitle: '',
-        buttonText: 'Secure Your Spot',
-        features: [
-          'Enhanced feature set',
-          'Polished UI/UX',
-          'Scalable architecture',
-          'Analytics integration'
-        ]
-      },
-      {
-        title: 'Enterprise MVP',
-        price: '$80,000+',
-        subtitle: '',
-        buttonText: 'Secure Your Spot',
-        features: [
-          'Full-feature development',
-          'Custom integrations',
-          'Advanced security',
-          'Deployment strategy'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'custom-enterprise',
-    title: 'Custom',
-    highlightWord: 'Enterprise Solutions',
-    cards: [
-      {
-        title: 'Enterprise Engagement',
-        price: 'Starting at $50,000',
-        subtitle: 'For large-scale enterprise projects requiring multiple services and ongoing development, we offer custom quotes based on detailed requirements analysis.',
-        buttonText: 'Secure your spot',
-        features: [
-          'Ongoing Development: Custom retainer packages'
+          'Legacy system modernization',
+          'Microservices architecture',
+          'DevOps & CI/CD automation',
+          '24/7 SLA Support'
         ]
       }
     ]
@@ -598,29 +237,29 @@ export const TEAM: TeamMember[] = [
   {
     id: '1',
     name: 'Alex Morgan',
-    role: 'Creative Director',
+    role: 'Head of Product',
     image: 'https://picsum.photos/seed/alex/400/500',
-    bio: 'Visionary designer with 10+ years shaping digital identities.',
+    bio: 'Product strategist with a track record of 3 successful exits.',
   },
   {
     id: '2',
     name: 'Marcus Thorne',
-    role: 'Lead Developer',
+    role: 'Lead Architect',
     image: 'https://picsum.photos/seed/marcus/400/500',
-    bio: 'Full-stack wizard specializing in WebGL and 3D interactions.',
+    bio: 'Specialist in cloud-native scalable architectures.',
   },
   {
     id: '3',
     name: 'Olivia Vance',
-    role: 'UX Researcher',
+    role: 'Design Lead',
     image: 'https://picsum.photos/seed/olivia/400/500',
-    bio: 'Obsessed with user behavior and creating seamless journeys.',
+    bio: 'Creating award-winning interfaces for global brands.',
   },
   {
     id: '4',
     name: 'James Lee',
-    role: 'Project Manager',
+    role: 'Engineering Manager',
     image: 'https://picsum.photos/seed/james/400/500',
-    bio: 'Keeps the creative chaos organized and on schedule.',
+    bio: 'Ensuring code quality and timely delivery across all squads.',
   },
 ];

@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
                <span className="text-2xl font-heading font-bold text-white">CLOUDOM</span>
             </a>
             <p className="text-gray-400 max-w-sm mb-8">
-              Crafting digital experiences that transcend the ordinary. We merge technology and art to build the future of the web.
+              We design, develop, and launch powerful solutions that scale with your vision. Your product partner from idea to impact.
             </p>
             <div className="flex space-x-4">
               {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-bold text-lg mb-6 text-white">Quick Links</h4>
             <ul className="space-y-4">
-              {['Services', 'Work', 'Process', 'About', 'Careers'].map((link) => (
+              {['Services', 'About', 'Contact', 'Work'].map((link) => (
                 <li key={link}>
                   <a href={`#${link.toLowerCase()}`} className="text-gray-400 hover:text-primary transition-colors relative group cursor-pointer">
                     {link}
@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
 
           <div>
             <h4 className="font-bold text-lg mb-6 text-white">Newsletter</h4>
-            <p className="text-gray-400 text-sm mb-4">Subscribe to get the latest digital trends.</p>
+            <p className="text-gray-400 text-sm mb-4">Subscribe to get the latest tech insights.</p>
             <form className="flex flex-col space-y-3">
               <input
                 type="email"
@@ -59,7 +59,13 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5">
-          <p className="text-gray-500 text-sm">© {new Date().getFullYear()} Cloudom Systems. All rights reserved.</p>
+          <div className="flex flex-col md:flex-row items-center gap-4">
+               <p className="text-gray-500 text-sm">© {new Date().getFullYear()} Cloudom Systems.</p>
+               <div className="flex gap-4 text-xs text-gray-600">
+                    <a href="#" className="hover:text-gray-400">Privacy Policy</a>
+                    <a href="#" className="hover:text-gray-400">Terms of Service</a>
+               </div>
+          </div>
           
           <button 
             onClick={scrollToTop}

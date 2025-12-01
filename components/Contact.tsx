@@ -29,8 +29,18 @@ const Contact: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            Let's create something <span className="text-primary">extraordinary</span>.
+            Ready to Build Something <span className="text-primary">Great?</span>
           </motion.h2>
+          
+          <motion.p 
+            className="text-xl text-gray-400 mb-12 max-w-lg"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+             Let’s take your idea to the next level — whether it’s your first release or your next big feature.
+          </motion.p>
           
           <motion.div 
             className="space-y-8 mt-12"
@@ -44,7 +54,7 @@ const Contact: React.FC = () => {
                 <MapPin />
               </div>
               <div>
-                <h4 className="font-bold text-lg text-white">Visit Us</h4>
+                <h4 className="font-bold text-lg text-white">Headquarters</h4>
                 <p className="text-gray-400">100 Future Way, Tech City, TC 90210</p>
               </div>
             </div>
@@ -55,17 +65,7 @@ const Contact: React.FC = () => {
               </div>
               <div>
                 <h4 className="font-bold text-lg text-white">Email Us</h4>
-                <p className="text-gray-400">hello@luminous.vision</p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-4">
-              <div className="p-4 bg-surface border border-white/10 rounded-full text-primary">
-                <Phone />
-              </div>
-              <div>
-                <h4 className="font-bold text-lg text-white">Call Us</h4>
-                <p className="text-gray-400">+1 (555) 123-4567</p>
+                <p className="text-gray-400">hello@cloudom.systems</p>
               </div>
             </div>
           </motion.div>
@@ -97,33 +97,34 @@ const Contact: React.FC = () => {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-primary transition-colors">Name</label>
-                <input
-                  type="text"
-                  required
-                  className="w-full bg-dark border border-white/10 rounded-lg px-4 py-4 focus:outline-none focus:border-primary text-white transition-all placeholder:text-gray-700"
-                  placeholder="John Doe"
-                />
-              </div>
-              
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-primary transition-colors">Email</label>
-                <input
-                  type="email"
-                  required
-                  className="w-full bg-dark border border-white/10 rounded-lg px-4 py-4 focus:outline-none focus:border-primary text-white transition-all placeholder:text-gray-700"
-                  placeholder="john@example.com"
-                />
+              <div className="grid grid-cols-2 gap-6">
+                 <div className="group">
+                    <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-primary transition-colors">Name</label>
+                    <input
+                    type="text"
+                    required
+                    className="w-full bg-dark border border-white/10 rounded-lg px-4 py-4 focus:outline-none focus:border-primary text-white transition-all placeholder:text-gray-700"
+                    placeholder="John Doe"
+                    />
+                 </div>
+                 <div className="group">
+                    <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-primary transition-colors">Email</label>
+                    <input
+                    type="email"
+                    required
+                    className="w-full bg-dark border border-white/10 rounded-lg px-4 py-4 focus:outline-none focus:border-primary text-white transition-all placeholder:text-gray-700"
+                    placeholder="john@example.com"
+                    />
+                 </div>
               </div>
 
               <div className="group">
-                <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-primary transition-colors">Message</label>
+                <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-primary transition-colors">Project Details</label>
                 <textarea
                   required
                   rows={4}
                   className="w-full bg-dark border border-white/10 rounded-lg px-4 py-4 focus:outline-none focus:border-primary text-white transition-all placeholder:text-gray-700"
-                  placeholder="Tell us about your project..."
+                  placeholder="Tell us about your product idea..."
                 />
               </div>
 
@@ -139,7 +140,7 @@ const Contact: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    <span>Send Message</span>
+                    <span>Schedule Free Consultation</span>
                     <Send size={18} />
                   </>
                 )}

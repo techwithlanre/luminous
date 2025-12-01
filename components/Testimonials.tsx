@@ -10,7 +10,7 @@ const Testimonials: React.FC = () => {
   const prev = () => setCurrent((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
 
   useEffect(() => {
-    const timer = setInterval(next, 5000);
+    const timer = setInterval(next, 6000);
     return () => clearInterval(timer);
   }, []);
 
@@ -25,7 +25,8 @@ const Testimonials: React.FC = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-6xl font-heading font-bold text-white">Client Stories</h2>
+          <span className="text-primary font-medium tracking-wider uppercase mb-2 block">Testimonials</span>
+          <h2 className="text-4xl md:text-6xl font-heading font-bold text-white">What Our Clients Say</h2>
         </motion.div>
 
         <div className="relative bg-dark border border-white/5 p-8 md:p-16 rounded-3xl shadow-2xl">
@@ -50,7 +51,7 @@ const Testimonials: React.FC = () => {
                     />
                   ))}
                 </div>
-                <p className="text-xl md:text-2xl italic text-gray-200 mb-8 leading-relaxed font-light">
+                <p className="text-xl md:text-2xl italic text-gray-200 mb-8 leading-relaxed font-light font-heading">
                   "{TESTIMONIALS[current].content}"
                 </p>
                 <div className="flex flex-col items-center">
@@ -60,7 +61,7 @@ const Testimonials: React.FC = () => {
                     className="w-16 h-16 rounded-full border-2 border-primary mb-4 object-cover"
                   />
                   <h4 className="font-bold text-lg text-white">{TESTIMONIALS[current].name}</h4>
-                  <p className="text-primary text-sm">{TESTIMONIALS[current].role} at {TESTIMONIALS[current].company}</p>
+                  <p className="text-primary text-sm">{TESTIMONIALS[current].role}, {TESTIMONIALS[current].company}</p>
                 </div>
               </motion.div>
             </AnimatePresence>

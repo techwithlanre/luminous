@@ -7,12 +7,22 @@ export interface Service {
   icon: LucideIcon;
 }
 
+export interface Industry {
+  id: string;
+  name: string;
+  icon: LucideIcon;
+}
+
 export interface Project {
   id: string;
   title: string;
-  category: 'web' | 'mobile' | 'branding' | 'marketing';
+  category: 'saas' | 'ecommerce' | 'fintech' | 'enterprise';
   image: string;
   description: string;
+  problem?: string;
+  solution?: string;
+  outcome?: string;
+  techStack?: string[];
 }
 
 export interface TimelineItem {
@@ -40,7 +50,7 @@ export interface Stat {
 
 export interface PricingCard {
   title: string;
-  price: string;
+  price?: string;
   subtitle?: string;
   features: string[];
   buttonText: string;

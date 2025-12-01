@@ -21,11 +21,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
   const navLinks = [
     { name: 'Home', page: 'home', hash: '#hero' },
-    { name: 'Overview', page: 'home', hash: '#services' },
-    { name: 'Case studies', page: 'home', hash: '#portfolio' },
-    { name: 'Blog', page: 'home', hash: '#about' },
-    { name: 'Services', page: 'services', hash: '' },
-    { name: 'Contact Us', page: currentPage, hash: '#contact' },
+    { name: 'About', page: 'home', hash: '#about' },
+    { name: 'Services', page: 'home', hash: '#services' },
+    { name: 'Industries', page: 'home', hash: '#industries' },
+    { name: 'Work', page: 'home', hash: '#portfolio' },
+    { name: 'Contact', page: 'home', hash: '#contact' },
   ];
 
   const handleLinkClick = (e: React.MouseEvent, link: typeof navLinks[0]) => {
@@ -54,14 +54,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           <span className="text-white font-heading font-bold text-xl hidden sm:block">Cloudom</span>
         </a>
 
-        {/* Desktop Menu - Centered Pill */}
+        {/* Desktop Menu */}
         <div className={`hidden md:flex items-center space-x-1 px-2 py-2 rounded-full transition-all duration-300 ${scrolled ? 'nav-glass' : 'bg-transparent'}`}>
           {navLinks.map((link) => (
             <button
               key={link.name}
               onClick={(e) => handleLinkClick(e, link)}
               className={`px-5 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
-                currentPage === link.page && !link.hash.includes('#') // Highlight active page if no hash or simple logic
+                (currentPage === link.page && window.location.hash === link.hash) 
                   ? 'text-white bg-white/10' 
                   : 'text-gray-300 hover:text-white hover:bg-white/10'
               }`}
@@ -77,7 +77,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             onClick={() => onNavigate(currentPage, '#contact')}
             className="group flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-white text-sm font-medium transition-all duration-300 hover:scale-105 cursor-pointer"
           >
-            <span>Book a Call</span>
+            <span>Start a Project</span>
             <ArrowUpRight size={16} className="text-gray-400 group-hover:text-primary transition-colors" />
           </button>
         </div>
@@ -126,7 +126,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                Book a Call
+                Start a Project
               </motion.button>
           </motion.div>
         )}

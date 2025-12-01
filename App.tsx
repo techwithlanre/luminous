@@ -8,15 +8,17 @@ import Portfolio from './components/Portfolio';
 import Timeline from './components/Timeline';
 import Stats from './components/Stats';
 import Testimonials from './components/Testimonials';
-import Pricing from './components/Pricing'; // Conceptually Services Page Content
+import Pricing from './components/Pricing'; // Detailed Services List
 import Team from './components/Team';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
-import Loader from './components/Loader';
+// import Loader from './components/Loader';
+import Industries from './components/Industries';
 
 const App: React.FC = () => {
-  const [loading, setLoading] = useState(true);
+  // Temporarily disabled loader by setting initial state to false
+  const [loading, setLoading] = useState(false); 
   const [view, setView] = useState<'home' | 'services'>('home');
 
   // Smooth scroll behavior is handled by CSS (html { scroll-behavior: smooth })
@@ -53,9 +55,9 @@ const App: React.FC = () => {
     <>
       <CustomCursor />
       
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {loading && <Loader onComplete={() => setLoading(false)} />}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       {!loading && (
         <main className="min-h-screen bg-dark text-white selection:bg-accent selection:text-white">
@@ -64,13 +66,13 @@ const App: React.FC = () => {
           {view === 'home' ? (
             <>
               <Hero />
-              <Services onNavigate={navigateTo} />
               <About />
+              <Services onNavigate={navigateTo} />
+              <Industries />
               <Portfolio />
               <Timeline />
               <Stats />
               <Testimonials />
-              <Team />
             </>
           ) : (
             <>

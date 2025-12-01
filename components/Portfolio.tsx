@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PORTFOLIO } from '../constants';
-import { X, ArrowUpRight } from 'lucide-react';
+import { X, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 
-const categories = ['all', 'web', 'mobile', 'branding', 'marketing'];
+const categories = ['all', 'saas', 'fintech', 'ecommerce', 'enterprise'];
 
 const Portfolio: React.FC = () => {
   const [filter, setFilter] = useState('all');
@@ -22,8 +22,8 @@ const Portfolio: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
             >
-                <span className="text-primary font-medium tracking-wider uppercase mb-2 block">Our Work</span>
-                <h2 className="text-4xl md:text-6xl font-heading font-bold text-white">Selected Projects</h2>
+                <span className="text-primary font-medium tracking-wider uppercase mb-2 block">Case Studies</span>
+                <h2 className="text-4xl md:text-6xl font-heading font-bold text-white">From Startups to Scale-Ups</h2>
             </motion.div>
             
             <div className="flex flex-wrap gap-2">
@@ -54,10 +54,10 @@ const Portfolio: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
-                className="group relative rounded-2xl overflow-hidden cursor-pointer border border-white/5 bg-surface"
+                className="group relative rounded-2xl overflow-hidden cursor-pointer border border-white/5 bg-surface h-full flex flex-col"
                 onClick={() => setSelectedProject(project.id)}
               >
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className="aspect-[16/9] overflow-hidden">
                     <img
                     src={project.image}
                     alt={project.title}
@@ -65,20 +65,28 @@ const Portfolio: React.FC = () => {
                     />
                 </div>
                 
-                <div className="p-6">
-                    <div className="flex justify-between items-start">
+                <div className="p-6 flex flex-col flex-grow">
+                    <div className="flex justify-between items-start mb-4">
                         <div>
-                            <h3 className="text-xl font-bold mb-1 text-white group-hover:text-primary transition-colors">
-                                {project.title}
-                            </h3>
-                            <p className="text-gray-400 text-sm capitalize">
+                            <p className="text-primary text-xs font-bold uppercase tracking-wider mb-1">
                                 {project.category}
                             </p>
+                            <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
+                                {project.title}
+                            </h3>
                         </div>
-                        <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white group-hover:bg-primary group-hover:text-white transition-all">
-                            <ArrowUpRight size={18} />
+                        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white group-hover:bg-primary group-hover:text-white transition-all">
+                            <ArrowUpRight size={16} />
                         </div>
                     </div>
+                    <p className="text-gray-400 text-sm line-clamp-3 mb-4">{project.description}</p>
+                    
+                    {project.outcome && (
+                         <div className="mt-auto pt-4 border-t border-white/5">
+                            <p className="text-xs text-gray-500 font-bold uppercase">Outcome</p>
+                            <p className="text-white text-sm font-medium">{project.outcome}</p>
+                        </div>
+                    )}
                 </div>
               </motion.div>
             ))}
@@ -96,33 +104,70 @@ const Portfolio: React.FC = () => {
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
-                className="bg-surface border border-white/10 p-2 rounded-2xl max-w-5xl w-full relative"
+                className="bg-surface border border-white/10 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative shadow-2xl"
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 50, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
-                  className="absolute -top-12 right-0 text-white hover:text-primary transition-colors"
+                  className="absolute top-4 right-4 z-10 bg-black/50 p-2 rounded-full text-white hover:text-primary transition-colors"
                   onClick={() => setSelectedProject(null)}
                 >
-                  <X size={32} />
+                  <X size={24} />
                 </button>
+                
                 {(() => {
                   const proj = PORTFOLIO.find(p => p.id === selectedProject);
                   if (!proj) return null;
                   return (
-                    <div className="grid md:grid-cols-2 gap-8 bg-black p-8 rounded-xl">
-                      <img src={proj.image} alt={proj.title} className="w-full h-64 md:h-full object-cover rounded-xl" />
-                      <div className="flex flex-col justify-center">
-                        <h3 className="text-4xl font-heading font-bold mb-4">{proj.title}</h3>
-                        <span className="px-3 py-1 rounded-full bg-primary/20 text-primary w-fit text-sm font-bold mb-6 capitalize">{proj.category}</span>
-                        <p className="text-gray-300 leading-relaxed mb-8 text-lg">{proj.description}</p>
-                        <button className="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-colors w-fit flex items-center gap-2">
-                          View Live Project
-                          <ArrowUpRight size={20} />
-                        </button>
-                      </div>
+                    <div className="flex flex-col">
+                        <div className="h-64 md:h-80 w-full relative">
+                            <img src={proj.image} alt={proj.title} className="w-full h-full object-cover" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+                            <div className="absolute bottom-6 left-6 md:left-10">
+                                <span className="px-3 py-1 rounded-full bg-primary text-white text-xs font-bold uppercase tracking-wide mb-2 inline-block">{proj.category}</span>
+                                <h3 className="text-4xl md:text-5xl font-heading font-bold text-white">{proj.title}</h3>
+                            </div>
+                        </div>
+                        
+                        <div className="p-6 md:p-10 grid md:grid-cols-3 gap-8">
+                            <div className="md:col-span-2 space-y-8">
+                                <div>
+                                    <h4 className="text-xl font-bold text-white mb-2">The Challenge</h4>
+                                    <p className="text-gray-400 leading-relaxed">{proj.problem || proj.description}</p>
+                                </div>
+                                <div>
+                                    <h4 className="text-xl font-bold text-white mb-2">Our Solution</h4>
+                                    <p className="text-gray-400 leading-relaxed">{proj.solution || "We implemented a scalable solution."}</p>
+                                </div>
+                                <div className="bg-primary/5 border border-primary/20 rounded-xl p-6">
+                                     <h4 className="text-xl font-bold text-primary mb-2 flex items-center gap-2">
+                                        <CheckCircle2 size={20} />
+                                        The Outcome
+                                     </h4>
+                                     <p className="text-white font-medium">{proj.outcome || "Significant improvement in metrics."}</p>
+                                </div>
+                            </div>
+                            
+                            <div className="space-y-6">
+                                <div>
+                                    <h5 className="text-sm font-bold text-gray-500 uppercase mb-3">Tech Stack</h5>
+                                    <div className="flex flex-wrap gap-2">
+                                        {proj.techStack?.map(tech => (
+                                            <span key={tech} className="px-3 py-1 bg-white/5 border border-white/10 rounded-md text-sm text-gray-300">
+                                                {tech}
+                                            </span>
+                                        )) || <span className="text-gray-500">Various Technologies</span>}
+                                    </div>
+                                </div>
+                                
+                                <button className="w-full py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+                                  View Live Project
+                                  <ArrowUpRight size={18} />
+                                </button>
+                            </div>
+                        </div>
                     </div>
                   );
                 })()}
