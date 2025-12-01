@@ -8,7 +8,7 @@ import Portfolio from './components/Portfolio';
 import Timeline from './components/Timeline';
 import Stats from './components/Stats';
 import Testimonials from './components/Testimonials';
-import Pricing from './components/Pricing';
+import Pricing from './components/Pricing'; // Conceptually Services Page Content
 import Team from './components/Team';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -17,9 +17,9 @@ import Loader from './components/Loader';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
+  const [view, setView] = useState<'home' | 'services'>('home');
 
   // Smooth scroll behavior is handled by CSS (html { scroll-behavior: smooth })
-  // But we want to ensure we start at top on reload
   useEffect(() => {
     if (loading) {
       window.scrollTo(0, 0);
@@ -28,6 +28,26 @@ const App: React.FC = () => {
       document.body.style.overflow = 'auto';
     }
   }, [loading]);
+
+  const navigateTo = (page: string, hash?: string) => {
+    // Cast string to view type safely
+    const targetView = (page === 'home' || page === 'services') ? page : 'home';
+    
+    setView(targetView);
+    
+    // Allow React to render the new view before scrolling
+    setTimeout(() => {
+        if (hash) {
+            const id = hash.replace('#', '');
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }, 100);
+  };
 
   return (
     <>
@@ -39,16 +59,26 @@ const App: React.FC = () => {
 
       {!loading && (
         <main className="min-h-screen bg-dark text-white selection:bg-accent selection:text-white">
-          <Navbar />
-          <Hero />
-          <Services />
-          <About />
-          <Portfolio />
-          <Timeline />
-          <Stats />
-          <Testimonials />
-          <Team />
-          <Pricing />
+          <Navbar currentPage={view} onNavigate={navigateTo} />
+          
+          {view === 'home' ? (
+            <>
+              <Hero />
+              <Services onNavigate={navigateTo} />
+              <About />
+              <Portfolio />
+              <Timeline />
+              <Stats />
+              <Testimonials />
+              <Team />
+            </>
+          ) : (
+            <>
+              <Pricing /> {/* This contains the Services Detailed List */}
+            </>
+          )}
+
+          {/* Contact and Footer are on both pages */}
           <Contact />
           <Footer />
         </main>

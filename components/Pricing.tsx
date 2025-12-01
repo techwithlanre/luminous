@@ -5,16 +5,25 @@ import { PRICING_SECTIONS } from '../constants';
 
 const Pricing: React.FC = () => {
   return (
-    <section id="pricing" className="py-32 bg-dark">
+    <section className="py-32 bg-dark pt-40">
       <div className="container mx-auto px-6">
         <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-6xl font-heading font-bold mb-4 text-white">Investment</h2>
-          <p className="text-gray-400">Transparent pricing for world-class results.</p>
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+            >
+                 <span className="px-4 py-1 rounded-full border border-primary/30 text-primary text-sm bg-primary/5 uppercase tracking-wider mb-4 inline-block">
+                    Catalog
+                </span>
+                <h2 className="text-4xl md:text-7xl font-heading font-bold mb-6 text-white">Our Services</h2>
+                <p className="text-gray-400 max-w-2xl mx-auto text-lg">Comprehensive digital solutions specifically tailored to scale your business. Choose your package and let's build the future.</p>
+            </motion.div>
         </div>
 
         <div className="space-y-32">
           {PRICING_SECTIONS.map((section, sectionIndex) => (
-            <div key={section.id} className="relative">
+            <div key={section.id} id={section.id} className="relative scroll-mt-32">
               {/* Section Header */}
               <motion.div 
                 className="text-center mb-12"
@@ -24,7 +33,7 @@ const Pricing: React.FC = () => {
                 transition={{ delay: 0.2 }}
               >
                 <h3 className="text-4xl md:text-5xl font-heading font-bold text-white">
-                  {section.title} <span className="bg-primary px-2 text-white transform -skew-x-6 inline-block">{section.highlightWord}</span>
+                  {section.title} <span className="text-primary">{section.highlightWord}</span>
                 </h3>
               </motion.div>
 
@@ -33,7 +42,7 @@ const Pricing: React.FC = () => {
                 {section.cards.map((card, index) => (
                   <motion.div
                     key={index}
-                    className="relative p-8 rounded-2xl border border-white/10 bg-surface flex flex-col group hover:border-primary/30 transition-all duration-300"
+                    className="relative p-8 rounded-2xl border border-white/10 bg-surface flex flex-col group hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,77,0,0.1)]"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -41,7 +50,7 @@ const Pricing: React.FC = () => {
                   >
                     {/* Header */}
                     <div className="mb-8">
-                      <p className="text-gray-400 text-sm mb-2">{card.title}</p>
+                      <p className="text-primary text-sm font-bold uppercase tracking-wider mb-2">{card.title}</p>
                       <h4 className="text-3xl font-bold text-white mb-2">{card.price}</h4>
                       {card.subtitle && (
                         <p className="text-gray-500 text-sm">{card.subtitle}</p>
@@ -49,7 +58,7 @@ const Pricing: React.FC = () => {
                     </div>
 
                     {/* CTA */}
-                    <button className="w-full bg-primary text-white font-bold py-3 rounded-full mb-8 hover:bg-orange-600 transition-colors flex items-center justify-center gap-2 group-hover:scale-[1.02] duration-300">
+                    <button className="w-full bg-white/5 border border-white/10 text-white font-bold py-3 rounded-full mb-8 hover:bg-primary hover:border-primary transition-all duration-300 flex items-center justify-center gap-2 group-hover:scale-[1.02]">
                       <ArrowUpRight size={16} />
                       {card.buttonText}
                     </button>

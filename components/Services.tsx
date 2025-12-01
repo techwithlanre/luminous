@@ -2,13 +2,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 
-const Services: React.FC = () => {
+interface ServicesProps {
+    onNavigate: (page: string, hash?: string) => void;
+}
+
+const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
   return (
     <section id="services" className="py-24 bg-dark relative">
       <div className="container mx-auto px-6">
         <div className="flex justify-center mb-4">
             <span className="px-4 py-1 rounded-full border border-primary/30 text-primary text-sm bg-primary/5 uppercase tracking-wider">
-                Services
+                Overview
             </span>
         </div>
         <motion.div
@@ -26,7 +30,8 @@ const Services: React.FC = () => {
             
             {/* Large Card */}
             <motion.div 
-                className="relative overflow-hidden rounded-[2rem] bg-surface border border-white/5 p-8 md:p-12 flex flex-col justify-between min-h-[400px] group"
+                className="relative overflow-hidden rounded-[2rem] bg-surface border border-white/5 p-8 md:p-12 flex flex-col justify-between min-h-[400px] group cursor-pointer"
+                onClick={() => onNavigate('services')}
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -44,7 +49,7 @@ const Services: React.FC = () => {
                 </div>
 
                 <div className="relative z-10 mt-8">
-                     <button className="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-medium hover:bg-orange-600 transition-colors">
+                     <button className="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-medium hover:bg-orange-600 transition-colors pointer-events-none">
                         <ArrowUpRight size={18} />
                         Get timely results
                      </button>
@@ -60,7 +65,8 @@ const Services: React.FC = () => {
                 
                 {/* Web Dev Card */}
                 <motion.div 
-                    className="flex-1 bg-surface border border-white/5 rounded-[2rem] p-8 flex items-center justify-between group hover:border-white/10 transition-colors"
+                    className="flex-1 bg-surface border border-white/5 rounded-[2rem] p-8 flex items-center justify-between group hover:border-white/10 transition-colors cursor-pointer"
+                    onClick={() => onNavigate('services', '#web-dev')}
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -77,7 +83,8 @@ const Services: React.FC = () => {
 
                 {/* Mobile App Card */}
                 <motion.div 
-                    className="flex-1 bg-surface border border-white/5 rounded-[2rem] p-8 flex items-center justify-between group hover:border-white/10 transition-colors"
+                    className="flex-1 bg-surface border border-white/5 rounded-[2rem] p-8 flex items-center justify-between group hover:border-white/10 transition-colors cursor-pointer"
+                    onClick={() => onNavigate('services', '#mobile-app')}
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
