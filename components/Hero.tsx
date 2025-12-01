@@ -71,11 +71,17 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8 }}
         >
-          <a href="#contact" className="px-8 py-4 bg-primary text-white rounded-full font-bold hover:bg-orange-600 transition-all shadow-[0_0_30px_rgba(255,77,0,0.3)] flex items-center gap-2 group">
+          <a 
+            href="#contact" 
+            className="px-8 py-4 bg-primary text-white rounded-full font-bold transition-all duration-300 shadow-[0_0_20px_rgba(255,77,0,0.4)] hover:shadow-[0_0_60px_rgba(255,77,0,0.7)] hover:scale-105 hover:bg-orange-500 active:scale-95 flex items-center gap-2 group"
+          >
             <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             {HERO_CONTENT.ctaPrimary}
           </a>
-          <a href="#portfolio" className="px-8 py-4 border border-primary/30 text-white rounded-full font-medium hover:bg-primary/10 transition-colors">
+          <a 
+            href="#portfolio" 
+            className="px-8 py-4 border border-primary/30 text-white rounded-full font-medium transition-all duration-300 hover:bg-primary/10 hover:scale-105 active:scale-95 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(255,77,0,0.2)]"
+          >
             {HERO_CONTENT.ctaSecondary}
           </a>
         </motion.div>

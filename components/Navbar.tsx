@@ -19,6 +19,15 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [mobileOpen]);
+
   const navLinks = [
     { name: 'Home', page: 'home', hash: '#hero' },
     { name: 'About', page: 'home', hash: '#about' },
@@ -46,7 +55,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         <a 
           href="#hero" 
           onClick={(e) => { e.preventDefault(); onNavigate('home', '#hero'); }}
-          className="flex items-center gap-2 group"
+          className="flex items-center gap-2 group relative z-[101]"
         >
           <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center transform rotate-3 group-hover:rotate-0 transition-transform duration-300">
             <span className="text-white font-heading font-bold text-xl">C</span>
@@ -84,8 +93,9 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-white p-2"
+          className="md:hidden text-white p-2 relative z-[101]"
           onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle Menu"
         >
           {mobileOpen ? <X /> : <Menu />}
         </button>
@@ -95,36 +105,37 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="fixed inset-0 bg-dark z-50 flex flex-col items-center justify-center space-y-8 md:hidden"
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed inset-0 bg-black z-[100] flex flex-col items-center justify-center space-y-8 md:hidden"
+            initial={{ opacity: 0, y: '-100%' }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: '-100%' }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            <button
-                className="absolute top-8 right-6 text-white"
-                onClick={() => setMobileOpen(false)}
-            >
-                <X size={32} />
-            </button>
-            {navLinks.map((link, i) => (
-              <motion.button
-                key={link.name}
-                onClick={(e) => handleLinkClick(e, link)}
-                className="text-3xl font-heading font-bold text-white hover:text-primary transition-colors"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * i }}
-              >
-                {link.name}
-              </motion.button>
-            ))}
+             <div className="absolute inset-0 bg-primary/5 pointer-events-none" />
+             
+            {navLinks.map((link, i) => {
+               const isActive = currentPage === link.page && window.location.hash === link.hash;
+               return (
+                <motion.button
+                    key={link.name}
+                    onClick={(e) => handleLinkClick(e, link)}
+                    className={`text-4xl font-heading font-bold transition-all duration-300 py-2 px-4 ${
+                        isActive ? 'text-primary' : 'text-white hover:text-primary/70'
+                    }`}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + (i * 0.05), duration: 0.4 }}
+                >
+                    {link.name}
+                </motion.button>
+               )
+            })}
              <motion.button
                 onClick={() => { setMobileOpen(false); onNavigate(currentPage, '#contact'); }}
-                className="px-8 py-3 bg-primary text-white font-bold rounded-full mt-4"
-                initial={{ opacity: 0, y: 20 }}
+                className="px-8 py-4 bg-primary text-white font-bold rounded-full mt-8 text-lg"
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: 0.5, duration: 0.4 }}
               >
                 Start a Project
               </motion.button>

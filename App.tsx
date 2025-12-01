@@ -13,12 +13,12 @@ import Team from './components/Team';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
-// import Loader from './components/Loader';
+import Loader from './components/Loader';
 import Industries from './components/Industries';
 
 const App: React.FC = () => {
-  // Temporarily disabled loader by setting initial state to false
-  const [loading, setLoading] = useState(false); 
+  // Loader enabled
+  const [loading, setLoading] = useState(true); 
   const [view, setView] = useState<'home' | 'services'>('home');
 
   // Smooth scroll behavior is handled by CSS (html { scroll-behavior: smooth })
@@ -55,9 +55,9 @@ const App: React.FC = () => {
     <>
       <CustomCursor />
       
-      {/* <AnimatePresence>
+      <AnimatePresence>
         {loading && <Loader onComplete={() => setLoading(false)} />}
-      </AnimatePresence> */}
+      </AnimatePresence>
 
       {!loading && (
         <main className="min-h-screen bg-dark text-white selection:bg-accent selection:text-white">
