@@ -49,6 +49,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
+      role="navigation"
+      aria-label="Main Navigation"
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
@@ -56,6 +58,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           href="#hero" 
           onClick={(e) => { e.preventDefault(); onNavigate('home', '#hero'); }}
           className="flex items-center gap-2 group relative z-[101]"
+          aria-label="Cloudom Systems Homepage"
         >
           <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center transform rotate-3 group-hover:rotate-0 transition-transform duration-300">
             <span className="text-white font-heading font-bold text-xl">C</span>
@@ -65,19 +68,23 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
         {/* Desktop Menu */}
         <div className={`hidden md:flex items-center space-x-1 px-2 py-2 rounded-full transition-all duration-300 ${scrolled ? 'nav-glass' : 'bg-transparent'}`}>
-          {navLinks.map((link) => (
-            <button
-              key={link.name}
-              onClick={(e) => handleLinkClick(e, link)}
-              className={`px-5 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
-                (currentPage === link.page && window.location.hash === link.hash) 
-                  ? 'text-white bg-white/10' 
-                  : 'text-gray-300 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              {link.name}
-            </button>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = currentPage === link.page && window.location.hash === link.hash;
+            return (
+              <button
+                key={link.name}
+                onClick={(e) => handleLinkClick(e, link)}
+                aria-current={isActive ? 'page' : undefined}
+                className={`px-5 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                  isActive
+                    ? 'text-white bg-white/10' 
+                    : 'text-gray-300 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                {link.name}
+              </button>
+            );
+          })}
         </div>
 
         {/* Right CTA */}
@@ -85,6 +92,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
            <button
             onClick={() => onNavigate(currentPage, '#contact')}
             className="group flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-white text-sm font-medium transition-all duration-300 hover:scale-105 cursor-pointer"
+            aria-label="Start a Project"
           >
             <span>Start a Project</span>
             <ArrowUpRight size={16} className="text-gray-400 group-hover:text-primary transition-colors" />
@@ -96,6 +104,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           className="md:hidden text-white p-2 relative z-[101]"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle Menu"
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-menu"
         >
           {mobileOpen ? <X /> : <Menu />}
         </button>
@@ -105,6 +115,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            id="mobile-menu"
             className="fixed inset-0 bg-black z-[100] flex flex-col items-center justify-center space-y-8 md:hidden"
             initial={{ opacity: 0, y: '-100%' }}
             animate={{ opacity: 1, y: 0 }}
@@ -119,6 +130,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                 <motion.button
                     key={link.name}
                     onClick={(e) => handleLinkClick(e, link)}
+                    aria-current={isActive ? 'page' : undefined}
                     className={`text-4xl font-heading font-bold transition-all duration-300 py-2 px-4 ${
                         isActive ? 'text-primary' : 'text-white hover:text-primary/70'
                     }`}

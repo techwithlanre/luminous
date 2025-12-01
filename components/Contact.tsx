@@ -99,32 +99,41 @@ const Contact: React.FC = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-2 gap-6">
                  <div className="group">
-                    <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-primary transition-colors">Name</label>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-primary transition-colors">Name</label>
                     <input
+                    id="name"
+                    name="name"
                     type="text"
                     required
                     className="w-full bg-dark border border-white/10 rounded-lg px-4 py-4 focus:outline-none focus:border-primary text-white transition-all placeholder:text-gray-700"
                     placeholder="John Doe"
+                    aria-required="true"
                     />
                  </div>
                  <div className="group">
-                    <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-primary transition-colors">Email</label>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-primary transition-colors">Email</label>
                     <input
+                    id="email"
+                    name="email"
                     type="email"
                     required
                     className="w-full bg-dark border border-white/10 rounded-lg px-4 py-4 focus:outline-none focus:border-primary text-white transition-all placeholder:text-gray-700"
                     placeholder="john@example.com"
+                    aria-required="true"
                     />
                  </div>
               </div>
 
               <div className="group">
-                <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-primary transition-colors">Project Details</label>
+                <label htmlFor="project" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-primary transition-colors">Project Details</label>
                 <textarea
+                  id="project"
+                  name="project"
                   required
                   rows={4}
                   className="w-full bg-dark border border-white/10 rounded-lg px-4 py-4 focus:outline-none focus:border-primary text-white transition-all placeholder:text-gray-700"
                   placeholder="Tell us about your product idea..."
+                  aria-required="true"
                 />
               </div>
 
@@ -132,6 +141,7 @@ const Contact: React.FC = () => {
                 type="submit"
                 disabled={loading}
                 className="w-full bg-primary text-white font-bold py-4 rounded-lg hover:bg-orange-600 transition-colors flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                aria-label={loading ? "Sending message" : "Schedule Free Consultation"}
               >
                 {loading ? (
                   <>

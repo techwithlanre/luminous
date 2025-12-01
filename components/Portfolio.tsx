@@ -26,11 +26,12 @@ const Portfolio: React.FC = () => {
                 <h2 className="text-4xl md:text-6xl font-heading font-bold text-white">From Startups to Scale-Ups</h2>
             </motion.div>
             
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2" role="group" aria-label="Project Filter">
                 {categories.map((cat) => (
                     <button
                     key={cat}
                     onClick={() => setFilter(cat)}
+                    aria-pressed={filter === cat}
                     className={`px-5 py-2 rounded-full border text-sm transition-all duration-300 capitalize cursor-pointer ${
                         filter === cat
                         ? 'bg-primary text-white border-primary'
@@ -56,12 +57,15 @@ const Portfolio: React.FC = () => {
                 transition={{ duration: 0.4 }}
                 className="group relative rounded-2xl overflow-hidden cursor-pointer border border-white/5 bg-surface h-full flex flex-col"
                 onClick={() => setSelectedProject(project.id)}
+                role="article"
+                aria-label={`View details for ${project.title}`}
               >
                 <div className="aspect-[16/9] overflow-hidden">
                     <img
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} - ${project.category} Project Screenshot`}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
                     />
                 </div>
                 
@@ -102,6 +106,9 @@ const Portfolio: React.FC = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedProject(null)}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="modal-title"
             >
               <motion.div
                 className="bg-surface border border-white/10 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative shadow-2xl"
@@ -113,6 +120,7 @@ const Portfolio: React.FC = () => {
                 <button
                   className="absolute top-4 right-4 z-10 bg-black/50 p-2 rounded-full text-white hover:text-primary transition-colors"
                   onClick={() => setSelectedProject(null)}
+                  aria-label="Close Project Details"
                 >
                   <X size={24} />
                 </button>
@@ -123,11 +131,11 @@ const Portfolio: React.FC = () => {
                   return (
                     <div className="flex flex-col">
                         <div className="h-64 md:h-80 w-full relative">
-                            <img src={proj.image} alt={proj.title} className="w-full h-full object-cover" />
+                            <img src={proj.image} alt={`${proj.title} Showcase`} className="w-full h-full object-cover" />
                             <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
                             <div className="absolute bottom-6 left-6 md:left-10">
                                 <span className="px-3 py-1 rounded-full bg-primary text-white text-xs font-bold uppercase tracking-wide mb-2 inline-block">{proj.category}</span>
-                                <h3 className="text-4xl md:text-5xl font-heading font-bold text-white">{proj.title}</h3>
+                                <h3 id="modal-title" className="text-4xl md:text-5xl font-heading font-bold text-white">{proj.title}</h3>
                             </div>
                         </div>
                         
