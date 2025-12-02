@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Facebook, Twitter, Instagram, Linkedin, ArrowUp, Loader2, Check } from 'lucide-react';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigate: (page: string, hash?: string) => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
@@ -42,12 +46,17 @@ const Footer: React.FC = () => {
     }
   };
 
+  const handleNavClick = (e: React.MouseEvent, page: string, hash?: string) => {
+    e.preventDefault();
+    onNavigate(page, hash);
+  };
+
   return (
     <footer className="bg-black pt-20 pb-10 border-t border-white/10 relative" role="contentinfo">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
-            <a href="#" className="flex items-center gap-2 mb-6 group w-fit" aria-label="Cloudom Systems Home">
+            <a href="/" onClick={(e) => handleNavClick(e, 'home', '#hero')} className="flex items-center gap-2 mb-6 group w-fit" aria-label="Cloudom Systems Home">
                <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
                     <span className="text-white font-heading font-bold text-lg">C</span>
                </div>
@@ -58,14 +67,16 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4">
               {[
-                { Icon: Facebook, label: 'Facebook' },
-                { Icon: Twitter, label: 'Twitter' },
-                { Icon: Instagram, label: 'Instagram' },
-                { Icon: Linkedin, label: 'LinkedIn' }
-              ].map(({ Icon, label }, i) => (
+                { Icon: Facebook, label: 'Facebook', href: 'https://facebook.com/cloudomsystems' },
+                { Icon: Twitter, label: 'Twitter', href: 'https://twitter.com/cloudomsystems' },
+                { Icon: Instagram, label: 'Instagram', href: 'https://instagram.com/cloudomsystems' },
+                { Icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/company/cloudomsystems' }
+              ].map(({ Icon, label, href }, i) => (
                 <a 
                   key={i} 
-                  href="#" 
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 cursor-pointer"
                   aria-label={`Visit our ${label} page`}
                 >
@@ -78,10 +89,19 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-bold text-lg mb-6 text-white">Quick Links</h4>
             <ul className="space-y-4">
-              {['Services', 'About', 'Contact', 'Work'].map((link) => (
-                <li key={link}>
-                  <a href={`#${link.toLowerCase()}`} className="text-gray-400 hover:text-primary transition-colors relative group cursor-pointer">
-                    {link}
+              {[
+                { name: 'Services', page: 'services', hash: undefined },
+                { name: 'About', page: 'home', hash: '#about' },
+                { name: 'Contact', page: 'home', hash: '#contact' },
+                { name: 'Work', page: 'home', hash: '#portfolio' }
+              ].map((link) => (
+                <li key={link.name}>
+                  <a 
+                    href={link.hash ? `/${link.hash}` : `/${link.page}`}
+                    onClick={(e) => handleNavClick(e, link.page, link.hash)}
+                    className="text-gray-400 hover:text-primary transition-colors relative group cursor-pointer"
+                  >
+                    {link.name}
                   </a>
                 </li>
               ))}
@@ -142,8 +162,20 @@ const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center gap-4">
                <p className="text-gray-500 text-sm">© {new Date().getFullYear()} Cloudom Systems.</p>
                <div className="flex gap-4 text-xs text-gray-600">
-                    <a href="#" className="hover:text-gray-400">Privacy Policy</a>
-                    <a href="#" className="hover:text-gray-400">Terms of Service</a>
+                    <a 
+                      href="/privacy" 
+                      onClick={(e) => handleNavClick(e, 'privacy')}
+                      className="hover:text-gray-400"
+                    >
+                      Privacy Policy
+                    </a>
+                    <a 
+                      href="/terms" 
+                      onClick={(e) => handleNavClick(e, 'terms')}
+                      className="hover:text-gray-400"
+                    >
+                      Terms of Service
+                    </a>
                </div>
           </div>
           

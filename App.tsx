@@ -15,11 +15,15 @@ import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import Loader from './components/Loader';
 import Industries from './components/Industries';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsOfService from './components/TermsOfService';
+
+type ViewType = 'home' | 'services' | 'privacy' | 'terms';
 
 const App: React.FC = () => {
   // Loader enabled
   const [loading, setLoading] = useState(true); 
-  const [view, setView] = useState<'home' | 'services'>('home');
+  const [view, setView] = useState<ViewType>('home');
 
   // Smooth scroll behavior is handled by CSS (html { scroll-behavior: smooth })
   useEffect(() => {
@@ -33,7 +37,7 @@ const App: React.FC = () => {
 
   const navigateTo = (page: string, hash?: string) => {
     // Cast string to view type safely
-    const targetView = (page === 'home' || page === 'services') ? page : 'home';
+    const targetView = (['home', 'services', 'privacy', 'terms'].includes(page)) ? page as ViewType : 'home';
     
     setView(targetView);
     
@@ -63,7 +67,7 @@ const App: React.FC = () => {
         <main className="min-h-screen bg-dark text-white selection:bg-accent selection:text-white">
           <Navbar currentPage={view} onNavigate={navigateTo} />
           
-          {view === 'home' ? (
+          {view === 'home' && (
             <>
               <Hero />
               <About />
@@ -74,15 +78,23 @@ const App: React.FC = () => {
               <Stats />
               <Testimonials />
             </>
-          ) : (
-            <>
-              <Pricing /> {/* This contains the Services Detailed List */}
-            </>
           )}
 
-          {/* Contact and Footer are on both pages */}
+          {view === 'services' && (
+            <Pricing />
+          )}
+
+          {view === 'privacy' && (
+            <PrivacyPolicy />
+          )}
+
+          {view === 'terms' && (
+            <TermsOfService />
+          )}
+
+          {/* Contact and Footer are on all pages */}
           <Contact />
-          <Footer />
+          <Footer onNavigate={navigateTo} />
         </main>
       )}
     </>
