@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, MapPin, Mail, Phone, Loader2, CheckCircle2 } from 'lucide-react';
@@ -5,15 +6,52 @@ import { Send, MapPin, Mail, Phone, Loader2, CheckCircle2 } from 'lucide-react';
 const Contact: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    project: ''
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
+    setError(false);
+
+    // REPLACE THIS URL with your actual form handling endpoint (e.g., Formspree, Getform, or custom API)
+    const ENDPOINT = "https://formspree.io/f/mldqnbvr";
+
+    try {
+      const response = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setLoading(false);
+        setSuccess(true);
+        setFormData({ name: '', email: '', project: '' });
+      } else {
+        setLoading(false);
+        setError(true);
+        console.error("Form submission failed");
+      }
+    } catch (err) {
       setLoading(false);
-      setSuccess(true);
-    }, 2000);
+      setError(true);
+      console.error("Error submitting form:", err);
+    }
   };
 
   return (
@@ -104,10 +142,13 @@ const Contact: React.FC = () => {
                     id="name"
                     name="name"
                     type="text"
+                    value={formData.name}
+                    onChange={handleChange}
                     required
                     className="w-full bg-dark border border-white/10 rounded-lg px-4 py-4 focus:outline-none focus:border-primary text-white transition-all placeholder:text-gray-700"
                     placeholder="John Doe"
                     aria-required="true"
+                    disabled={loading}
                     />
                  </div>
                  <div className="group">
@@ -116,10 +157,13 @@ const Contact: React.FC = () => {
                     id="email"
                     name="email"
                     type="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     required
                     className="w-full bg-dark border border-white/10 rounded-lg px-4 py-4 focus:outline-none focus:border-primary text-white transition-all placeholder:text-gray-700"
                     placeholder="john@example.com"
                     aria-required="true"
+                    disabled={loading}
                     />
                  </div>
               </div>
@@ -129,13 +173,20 @@ const Contact: React.FC = () => {
                 <textarea
                   id="project"
                   name="project"
+                  value={formData.project}
+                  onChange={handleChange}
                   required
                   rows={4}
                   className="w-full bg-dark border border-white/10 rounded-lg px-4 py-4 focus:outline-none focus:border-primary text-white transition-all placeholder:text-gray-700"
                   placeholder="Tell us about your product idea..."
                   aria-required="true"
+                  disabled={loading}
                 />
               </div>
+
+              {error && (
+                <p className="text-red-500 text-sm">Failed to send message. Please try again later.</p>
+              )}
 
               <button
                 type="submit"

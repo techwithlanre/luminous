@@ -15,8 +15,6 @@ const Footer: React.FC = () => {
 
     setStatus('loading');
 
-    // TODO: Replace this URL with your actual Loops.so form action URL
-    // You can find this in Loops > Forms > (Create/Select Form) > Overview/Embed
     const LOOPS_ENDPOINT = "https://app.loops.so/api/newsletter-form/clpimip6z0151ia0o1q2uyg7d";
 
     try {
