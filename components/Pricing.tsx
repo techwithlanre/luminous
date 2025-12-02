@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check, ArrowUpRight } from 'lucide-react';
@@ -58,10 +59,15 @@ const Pricing: React.FC = () => {
                     </div>
 
                     {/* CTA */}
-                    <button className="w-full bg-white/5 border border-white/10 text-white font-bold py-3 rounded-full mb-8 hover:bg-primary hover:border-primary transition-all duration-300 flex items-center justify-center gap-2 group-hover:scale-[1.02]">
+                    <a
+                      href="https://calendly.com/techwithlanre/product"
+                      target="_blank"
+                      rel="noopener noreferrer" 
+                      className="w-full bg-white/5 border border-white/10 text-white font-bold py-3 rounded-full mb-8 hover:bg-primary hover:border-primary transition-all duration-300 flex items-center justify-center gap-2 group-hover:scale-[1.02]"
+                    >
                       <ArrowUpRight size={16} />
                       {card.buttonText}
-                    </button>
+                    </a>
 
                     {/* Features */}
                     <ul className="space-y-4 flex-grow">

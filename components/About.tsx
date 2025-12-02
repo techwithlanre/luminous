@@ -59,7 +59,9 @@ const About: React.FC = () => {
           </motion.p>
 
           <motion.a
-            href="#contact"
+            href="https://calendly.com/techwithlanre/product"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center space-x-2 text-primary font-bold hover:text-white transition-colors cursor-pointer group"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}

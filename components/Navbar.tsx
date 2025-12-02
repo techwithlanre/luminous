@@ -154,8 +154,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             {/* CTA Button (Desktop) */}
             {!mobileOpen && (
                 <div className="hidden lg:block">
-                     <button
-                        onClick={() => onNavigate(currentPage, '#contact')}
+                     <a
+                        href="https://calendly.com/techwithlanre/product"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className={`group flex items-center gap-2 rounded-full text-white text-sm font-bold transition-all duration-300 ${
                             scrolled ? 'w-10 h-10 p-0 justify-center bg-primary' : 'px-5 py-2.5 bg-primary hover:bg-orange-600'
                         }`}
@@ -169,7 +171,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                                 <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                             </>
                         )}
-                    </button>
+                    </a>
                 </div>
             )}
 
@@ -203,15 +205,18 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                                 </motion.button>
                             );
                         })}
-                        <motion.button
-                            onClick={() => { setMobileOpen(false); onNavigate(currentPage, '#contact'); }}
+                        <motion.a
+                            href="https://calendly.com/techwithlanre/product"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setMobileOpen(false)}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3 }}
                             className="w-full mt-4 p-4 bg-primary rounded-xl text-white font-bold flex justify-center items-center gap-2"
                         >
                             Let's Talk <ArrowUpRight size={18} />
-                        </motion.button>
+                        </motion.a>
                     </motion.div>
                 )}
             </AnimatePresence>
