@@ -54,12 +54,42 @@ export const SERVICES: Service[] = [
 ];
 
 export const INDUSTRIES: Industry[] = [
-  { id: '1', name: 'SaaS & Startups', icon: Rocket },
-  { id: '2', name: 'E-commerce', icon: ShoppingCart },
-  { id: '3', name: 'Fintech', icon: CreditCard },
-  { id: '4', name: 'Healthcare', icon: Activity },
-  { id: '5', name: 'Logistics', icon: Truck },
-  { id: '6', name: 'EdTech', icon: GraduationCap },
+  { 
+    id: '1', 
+    name: 'SaaS & Startups', 
+    description: 'Rapid MVP development and scalable architectures for high-growth tech companies.',
+    icon: Rocket 
+  },
+  { 
+    id: '2', 
+    name: 'E-commerce', 
+    description: 'High-conversion storefronts and headless commerce solutions that drive sales.',
+    icon: ShoppingCart 
+  },
+  { 
+    id: '3', 
+    name: 'Fintech', 
+    description: 'Secure, compliant, and user-friendly financial applications and payment systems.',
+    icon: CreditCard 
+  },
+  { 
+    id: '4', 
+    name: 'Healthcare', 
+    description: 'HIPAA-compliant digital health platforms focusing on patient experience and data security.',
+    icon: Activity 
+  },
+  { 
+    id: '5', 
+    name: 'Logistics', 
+    description: 'Real-time tracking, fleet management, and supply chain optimization tools.',
+    icon: Truck 
+  },
+  { 
+    id: '6', 
+    name: 'EdTech', 
+    description: 'Interactive learning management systems and virtual classroom experiences.',
+    icon: GraduationCap 
+  },
 ];
 
 export const PORTFOLIO: Project[] = [
