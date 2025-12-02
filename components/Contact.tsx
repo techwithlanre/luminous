@@ -135,7 +135,7 @@ const Contact: React.FC = () => {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <div className="group">
                     <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-primary transition-colors">Name</label>
                     <input

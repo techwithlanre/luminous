@@ -21,8 +21,8 @@ import TermsOfService from './components/TermsOfService';
 type ViewType = 'home' | 'services' | 'privacy' | 'terms';
 
 const App: React.FC = () => {
-  // Loader enabled
-  const [loading, setLoading] = useState(true); 
+  // Loader enabled (temporarily deactivated)
+  const [loading, setLoading] = useState(false); 
   const [view, setView] = useState<ViewType>('home');
 
   // Smooth scroll behavior is handled by CSS (html { scroll-behavior: smooth })

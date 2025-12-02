@@ -23,7 +23,7 @@ const About: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" 
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" 
               alt="Product Team Collaboration" 
               className="w-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
             />
