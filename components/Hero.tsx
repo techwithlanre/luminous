@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, Users, Code2, PenTool } from 'lucide-react';
 import { HERO_CONTENT } from '../constants';
@@ -7,6 +7,17 @@ import { HERO_CONTENT } from '../constants';
 const Hero: React.FC = () => {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+        setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 pb-20">
@@ -17,8 +28,9 @@ const Hero: React.FC = () => {
       </div>
 
       <motion.div 
-        className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center"
-        style={{ y: y1 }}
+        className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center will-change-transform"
+        // Disable parallax effect on mobile to prevent jitter
+        style={{ y: isMobile ? 0 : y1 }}
       >
         
         {/* Tagline */}

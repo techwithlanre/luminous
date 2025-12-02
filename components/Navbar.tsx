@@ -15,11 +15,16 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      // Add hysteresis to prevent flickering at the threshold
+      if (window.scrollY > 50 && !scrolled) {
+        setScrolled(true);
+      } else if (window.scrollY < 30 && scrolled) {
+        setScrolled(false);
+      }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [scrolled]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -65,7 +70,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             height: mobileOpen ? 'auto' : 'auto',
             padding: mobileOpen ? '20px' : scrolled ? '8px 12px' : '12px 24px',
           }}
-          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          // Softer spring physics to prevent jumpiness on mobile/tablets
+          transition={{ type: 'spring', stiffness: 200, damping: 25 }}
         >
           <div className={`flex items-center justify-between gap-4 ${mobileOpen ? 'flex-col items-stretch' : ''}`}>
             
@@ -78,15 +84,17 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                     className="flex items-center gap-2 group relative z-[101] shrink-0"
                     aria-label="Cloudom Systems Homepage"
                 >
-                    <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center transform transition-transform duration-300 group-hover:rotate-12">
+                    <motion.div layout="position" className="w-8 h-8 bg-primary rounded-full flex items-center justify-center transform transition-transform duration-300 group-hover:rotate-12">
                         <span className="text-white font-heading font-bold text-sm">C</span>
-                    </div>
-                    <AnimatePresence>
+                    </motion.div>
+                    <AnimatePresence mode="popLayout">
                         {(!scrolled || mobileOpen) && (
                             <motion.span 
+                                layout="position"
                                 initial={{ opacity: 0, width: 0 }}
                                 animate={{ opacity: 1, width: 'auto' }}
                                 exit={{ opacity: 0, width: 0 }}
+                                transition={{ duration: 0.3 }}
                                 className="text-white font-heading font-bold text-lg whitespace-nowrap overflow-hidden"
                             >
                                 Cloudom
