@@ -102,7 +102,8 @@ export const PORTFOLIO: Project[] = [
     problem: 'Users struggled to find reliable trainers and manage bookings efficiently.',
     solution: 'Developed a seamless web and mobile app with real-time booking, trainer profiles, and secure payment integration.',
     outcome: 'Launched in 12 weeks, scaling to 10,000+ daily active users within 6 months.',
-    techStack: ['Flutter','React', 'AWS', 'WebSockets', 'Laravel', 'Stripe']
+    techStack: ['Flutter','React', 'AWS', 'WebSockets', 'Laravel', 'Stripe'],
+    liveUrl: 'https://playvo.app'
   },
   {
     id: '2',
@@ -113,7 +114,8 @@ export const PORTFOLIO: Project[] = [
     problem: 'Service workers faced challenges in receiving tips digitally, especially during contactless transactions.',
     solution: 'Built a secure mobile app allowing customers to tip service providers via QR codes and digital wallets.',
     outcome: 'Adopted by over 500 businesses within 3 months, processing $200K+ in tips monthly.',
-    techStack: ['Flutter', 'Node.js', 'MongoDB', 'AWS Lambda', 'Stripe']
+    techStack: ['Flutter', 'Node.js', 'MongoDB', 'AWS Lambda', 'Stripe'],
+    liveUrl: 'https://tipmee.com'
   },
   {
     id: '3',
@@ -124,7 +126,8 @@ export const PORTFOLIO: Project[] = [
     problem: 'Universities struggled to offer personalized curriculum guidance at scale.',
     solution: 'Integrated an AI engine to analyze student performance and suggest tailored learning modules.',
     outcome: 'Adopted by 5 major universities, improving student retention rates by 15%.',
-    techStack: ['Next.js', 'OpenAI API', 'Python', 'Azure']
+    techStack: ['Next.js', 'OpenAI API', 'Python', 'Azure'],
+    liveUrl: 'https://learnloop.example.com'
   },
 ];
 

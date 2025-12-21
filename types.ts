@@ -24,7 +24,8 @@ export interface Project {
   solution?: string;
   outcome?: string;
   techStack?: string[];
-}
+  liveUrl?: string; // optional link to the live project
+} 
 
 export interface TimelineItem {
   year: string;

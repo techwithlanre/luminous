@@ -170,10 +170,27 @@ const Portfolio: React.FC = () => {
                                     </div>
                                 </div>
                                 
-                                <button className="w-full py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
-                                  View Live Project
-                                  <ArrowUpRight size={18} />
-                                </button>
+                                {proj.liveUrl ? (
+                                  <a
+                                    href={proj.liveUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="w-full py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+                                  >
+                                    View Live Project
+                                    <ArrowUpRight size={18} />
+                                  </a>
+                                ) : (
+                                  <button
+                                    className="w-full py-4 bg-white text-black font-bold rounded-full opacity-60 cursor-not-allowed flex items-center justify-center gap-2"
+                                    disabled
+                                  >
+                                    View Live Project
+                                    <ArrowUpRight size={18} />
+                                  </button>
+                                )
+                              }
                             </div>
                         </div>
                     </div>
