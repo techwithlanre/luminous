@@ -57,7 +57,7 @@ const Industries: React.FC = () => {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium tracking-wide uppercase mb-6"
           >
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span className="w-2 h-2 rounded-full bg-primary motion-safe:animate-pulse"></span>
             Industries
           </motion.div>
           

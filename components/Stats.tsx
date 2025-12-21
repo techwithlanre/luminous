@@ -9,10 +9,17 @@ const CountUp: React.FC<{ value: number; suffix: string }> = ({ value, suffix })
 
   useEffect(() => {
     if (isInView) {
+      const prefersReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+      if (prefersReduced || isMobile) {
+        setCount(value);
+        return;
+      }
+
       let start = 0;
       const end = value;
       const duration = 2000;
-      const incrementTime = 20;
+      const incrementTime = 40; // reduce update frequency for lower CPU
       const step = end / (duration / incrementTime);
 
       const timer = setInterval(() => {

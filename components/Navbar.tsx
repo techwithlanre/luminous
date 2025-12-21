@@ -26,13 +26,33 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll when mobile menu is open using a fixed-position technique to prevent layout shift
   useEffect(() => {
+    let scrollY = 0;
     if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
+      // store current scroll, then lock the body with fixed positioning
+      scrollY = window.scrollY || window.pageYOffset;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
     } else {
-      document.body.style.overflow = '';
+      // restore scroll position and clear styles
+      const top = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      if (top) {
+        const restoredY = -parseInt(top || '0');
+        window.scrollTo(0, restoredY);
+      }
     }
+
+    // cleanup if unmounted while locked
+    return () => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+    };
   }, [mobileOpen]);
 
   const navLinks = [
@@ -61,17 +81,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         aria-label="Main Navigation"
       >
         <motion.div
-          className="pointer-events-auto relative bg-black/60 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] overflow-hidden"
-          layout
-          initial={{ borderRadius: 32, width: 'auto' }}
-          animate={{
-            borderRadius: mobileOpen ? 24 : 50,
-            width: mobileOpen ? '95vw' : 'auto',
-            height: mobileOpen ? 'auto' : 'auto',
-            padding: mobileOpen ? '20px' : scrolled ? '8px 12px' : '12px 24px',
-          }}
-          // Softer spring physics to prevent jumpiness on mobile/tablets
+          className={`pointer-events-auto relative bg-black/60 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] overflow-hidden ${mobileOpen ? 'p-5 w-[95vw]' : scrolled ? 'py-2 px-3' : 'py-3 px-6'}`}
+          initial={false}
+          animate={{ borderRadius: mobileOpen ? 24 : 50 }}
           transition={{ type: 'spring', stiffness: 200, damping: 25 }}
+          style={{ willChange: 'transform, border-radius' }}
         >
           <div className={`flex items-center justify-between gap-4 ${mobileOpen ? 'flex-col items-stretch' : ''}`}>
             
@@ -179,30 +193,29 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             <AnimatePresence>
                 {mobileOpen && (
                     <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
+                        initial={{ opacity: 0, scaleY: 0 }}
+                        animate={{ opacity: 1, scaleY: 1 }}
+                        exit={{ opacity: 0, scaleY: 0 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                        style={{ transformOrigin: 'top', willChange: 'transform, opacity' }}
                         className="w-full flex flex-col gap-2 pt-4 lg:hidden"
                     >
                         <div className="w-full h-px bg-white/10 mb-2"></div>
-                        {navLinks.map((link, i) => {
+                        {navLinks.map((link) => {
                             const Icon = link.icon;
                             const isActive = currentPage === link.page && window.location.hash === link.hash;
                             return (
-                                <motion.button
+                                <button
                                     key={link.name}
                                     onClick={(e) => handleLinkClick(e, link)}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: i * 0.05 }}
-                                    className={`flex items-center gap-4 w-full p-4 rounded-xl transition-all ${
+                                    className={`flex items-center gap-4 w-full p-4 rounded-xl transition-colors duration-200 ${
                                         isActive ? 'bg-primary/20 text-primary' : 'hover:bg-white/5 text-gray-300'
                                     }`}
                                 >
                                     <Icon size={20} />
                                     <span className="font-heading font-bold text-lg">{link.name}</span>
                                     {isActive && <div className="ml-auto w-2 h-2 rounded-full bg-primary" />}
-                                </motion.button>
+                                </button>
                             );
                         })}
                         <motion.a

@@ -23,8 +23,8 @@ const Hero: React.FC = () => {
     <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 pb-20">
       {/* Background Ambience */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute -top-[30%] -left-[10%] w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] opacity-40"></div>
-        <div className="absolute top-[20%] right-[10%] w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[100px] opacity-30"></div>
+        <div className="hidden md:block absolute -top-[30%] -left-[10%] w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] opacity-40"></div>
+        <div className="hidden md:block absolute top-[20%] right-[10%] w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[100px] opacity-30"></div>
       </div>
 
       <motion.div 
@@ -90,7 +90,7 @@ const Hero: React.FC = () => {
             href="https://calendly.com/techwithlanre/product"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-4 bg-primary text-white rounded-full font-bold transition-all duration-300 shadow-[0_0_20px_rgba(255,77,0,0.4)] hover:shadow-[0_0_60px_rgba(255,77,0,0.7)] hover:scale-105 hover:bg-orange-500 active:scale-95 flex items-center gap-2 group"
+            className="px-8 py-4 bg-primary text-white rounded-full font-bold transition-all duration-300 md:shadow-[0_0_20px_rgba(255,77,0,0.4)] md:hover:shadow-[0_0_60px_rgba(255,77,0,0.7)] hover:scale-105 hover:bg-orange-500 active:scale-95 flex items-center gap-2 group"
           >
             <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             {HERO_CONTENT.ctaPrimary}
