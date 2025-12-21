@@ -12,6 +12,33 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hoveredTab, setHoveredTab] = useState<string | null>(null);
+  const [activeHash, setActiveHash] = useState<string | null>(null); // currently visible section hash
+
+  // Observe sections to keep the nav state in sync while scrolling
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const ids = ['hero','about','services','industries','portfolio','contact'];
+    const observer = new IntersectionObserver((entries) => {
+      // find the entry most in view
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a, b) => (b.intersectionRatio - a.intersectionRatio))[0];
+
+      if (visible && visible.target && visible.target.id) {
+        setActiveHash(`#${visible.target.id}`);
+        // also keep the URL hash in sync without scrolling
+        try { window.history.replaceState(null, '', `#${visible.target.id}`); } catch (e) {}
+      }
+    }, { root: null, threshold: [0.35, 0.5, 0.65], rootMargin: '-25% 0px -40% 0px' });
+
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -133,7 +160,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             {!mobileOpen && (
                 <div className="hidden lg:flex items-center gap-1">
                 {navLinks.map((link) => {
-                    const isActive = currentPage === link.page && window.location.hash === link.hash;
+                    const effectiveHash = activeHash ?? window.location.hash;
+                    const isActive = currentPage === link.page && effectiveHash === link.hash;
                     return (
                     <button
                         key={link.name}
@@ -203,7 +231,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                         <div className="w-full h-px bg-white/10 mb-2"></div>
                         {navLinks.map((link) => {
                             const Icon = link.icon;
-                            const isActive = currentPage === link.page && window.location.hash === link.hash;
+                            const effectiveHash = activeHash ?? window.location.hash;
+                            const isActive = currentPage === link.page && effectiveHash === link.hash;
                             return (
                                 <button
                                     key={link.name}

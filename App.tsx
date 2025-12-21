@@ -17,6 +17,7 @@ import Loader from './components/Loader';
 import Industries from './components/Industries';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
+import { initAnalytics, trackPageview, trackClick } from './src/lib/analytics';
 
 type ViewType = 'home' | 'services' | 'privacy' | 'terms';
 
@@ -35,6 +36,22 @@ const App: React.FC = () => {
     }
   }, [loading]);
 
+  // Initialize analytics and register global click tracking once
+  useEffect(() => {
+    initAnalytics();
+    // send initial pageview for the current view
+    trackPageview(`/${view}`);
+
+    const handleClick = (e: MouseEvent) => trackClick(e);
+    document.addEventListener('click', handleClick, { capture: true });
+    return () => document.removeEventListener('click', handleClick, { capture: true });
+  }, []);
+
+  // Send pageview events when SPA "view" changes
+  useEffect(() => {
+    trackPageview(`/${view}`);
+  }, [view]);
+
   const navigateTo = (page: string, hash?: string) => {
     // Cast string to view type safely
     const targetView = (['home', 'services', 'privacy', 'terms'].includes(page)) ? page as ViewType : 'home';
@@ -43,15 +60,19 @@ const App: React.FC = () => {
     
     // Allow React to render the new view before scrolling
     setTimeout(() => {
-        if (hash) {
-            const id = hash.replace('#', '');
-            const el = document.getElementById(id);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth' });
-            }
-        } else {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (hash) {
+        const id = hash.replace('#', '');
+        // update the URL hash without causing a jump
+        try { window.history.replaceState(null, '', `#${id}`); } catch (e) {}
+        const el = document.getElementById(id);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
         }
+      } else {
+        // clear hash but don't reload
+        try { window.history.replaceState(null, '', window.location.pathname); } catch (e) {}
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }, 100);
   };
 
@@ -76,6 +97,7 @@ const App: React.FC = () => {
               <Portfolio />
               <Timeline />
               <Stats />
+              {/* <Team /> */}
               <Testimonials />
             </>
           )}

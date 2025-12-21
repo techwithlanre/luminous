@@ -173,10 +173,10 @@ export const TESTIMONIALS: Testimonial[] = [
 ];
 
 export const STATS: Stat[] = [
-  { id: '1', label: 'Products Launched', value: 85, suffix: '+' },
-  { id: '2', label: 'Active Users', value: 500, suffix: 'K+' },
-  { id: '3', label: 'Enterprise Clients', value: 20, suffix: '+' },
-  { id: '4', label: 'Team Experts', value: 45, suffix: '' },
+  { id: '1', label: 'Products Launched', value: 15, suffix: '+' },
+  { id: '2', label: 'Active Users', value: 50, suffix: 'K+' },
+  { id: '3', label: 'Enterprise Clients', value: 4, suffix: '+' },
+  { id: '4', label: 'Team Experts', value: 8, suffix: '' },
 ];
 
 export const PRICING_SECTIONS: PricingSection[] = [
