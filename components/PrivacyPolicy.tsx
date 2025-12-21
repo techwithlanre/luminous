@@ -47,7 +47,7 @@ const PrivacyPolicy: React.FC = () => {
 
             <h2 className="text-white font-bold text-2xl mt-12 mb-6">5. Contact Us</h2>
             <p className="mb-6">
-              If you have any questions about this privacy policy or our privacy practices, please contact us at: <a href="mailto:hello@cloudom.systems" className="text-primary hover:text-white transition-colors">hello@cloudom.systems</a>.
+              If you have any questions about this privacy policy or our privacy practices, please contact us at: <a href="mailto:hello@cloudomsystems.com" className="text-primary hover:text-white transition-colors">hello@cloudomsystems.com</a>.
             </p>
           </div>
         </motion.div>

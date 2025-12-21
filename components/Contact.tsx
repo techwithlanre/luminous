@@ -93,7 +93,7 @@ const Contact: React.FC = () => {
               </div>
               <div>
                 <h4 className="font-bold text-lg text-white">Headquarters</h4>
-                <p className="text-gray-400">100 Future Way, Tech City, TC 90210</p>
+                <p className="text-gray-400">Block 1 Flat 5, Ijebu Ode Close, Area 2. Garki Abuja</p>
               </div>
             </div>
             
@@ -103,7 +103,7 @@ const Contact: React.FC = () => {
               </div>
               <div>
                 <h4 className="font-bold text-lg text-white">Email Us</h4>
-                <p className="text-gray-400">hello@cloudom.systems</p>
+                <p className="text-gray-400">hello@cloudomsystems.com</p>
               </div>
             </div>
           </motion.div>

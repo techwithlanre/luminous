@@ -95,25 +95,25 @@ export const INDUSTRIES: Industry[] = [
 export const PORTFOLIO: Project[] = [
   {
     id: '1',
-    title: 'ScaleUp SaaS Platform',
+    title: 'Playvo',
     category: 'saas',
-    image: 'https://picsum.photos/seed/saasproj/800/600',
-    description: 'A comprehensive management platform for remote teams.',
-    problem: 'The client needed a scalable way to manage distributed teams but existing tools were clunky and slow.',
-    solution: 'We built a React/Node.js based platform with real-time collaboration features and automated workflows.',
+    image: 'https://voorte.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fplayvo.277fe53f.png&w=3840&q=75',
+    description: 'An intuitive platform where fitness enthusiasts can discover, book, and manage workout sessions with top trainers worldwide.',
+    problem: 'Users struggled to find reliable trainers and manage bookings efficiently.',
+    solution: 'Developed a seamless web and mobile app with real-time booking, trainer profiles, and secure payment integration.',
     outcome: 'Launched in 12 weeks, scaling to 10,000+ daily active users within 6 months.',
-    techStack: ['React', 'Node.js', 'AWS', 'WebSockets']
+    techStack: ['Flutter','React', 'AWS', 'WebSockets', 'Laravel', 'Stripe']
   },
   {
     id: '2',
-    title: 'SwiftPay Fintech App',
+    title: 'Tipmee',
     category: 'fintech',
-    image: 'https://picsum.photos/seed/fintechproj/800/600',
-    description: 'Mobile-first payment solution for gig economy workers.',
-    problem: 'Gig workers faced delays in receiving payments and high transaction fees.',
-    solution: 'Developed a secure mobile app with instant payout integration and low-fee transfer logic.',
-    outcome: 'Processed $5M+ in transactions in the first quarter with 99.99% uptime.',
-    techStack: ['React Native', 'Python', 'Stripe API', 'PostgreSQL']
+    image: 'https://voorte.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ftipmee.881631e4.png&w=1200&q=75',
+    description: 'Mobile-first tipping platform for service providers.',
+    problem: 'Service workers faced challenges in receiving tips digitally, especially during contactless transactions.',
+    solution: 'Built a secure mobile app allowing customers to tip service providers via QR codes and digital wallets.',
+    outcome: 'Adopted by over 500 businesses within 3 months, processing $200K+ in tips monthly.',
+    techStack: ['Flutter', 'Node.js', 'MongoDB', 'AWS Lambda', 'Stripe']
   },
   {
     id: '3',
