@@ -122,12 +122,12 @@ export const PORTFOLIO: Project[] = [
     title: 'Phospay',
     category: 'fintech',
     image: 'https://picsum.photos/seed/edtechproj/800/600',
-    description: 'AI-driven personalized learning path generator for universities.',
-    problem: 'Universities struggled to offer personalized curriculum guidance at scale.',
-    solution: 'Integrated an AI engine to analyze student performance and suggest tailored learning modules.',
-    outcome: 'Adopted by 5 major universities, improving student retention rates by 15%.',
-    techStack: ['Next.js', 'OpenAI API', 'Python', 'Azure'],
-    liveUrl: 'https://learnloop.example.com'
+    description: 'A mobile payment platform for small businesses. It handles bills payment, subscriptions, and bank transfers.',
+    problem: 'Small businesses struggled to accept payments digitally, especially during contactless transactions.',
+    solution: 'Built a secure mobile app allowing customers to pay for goods and services via QR codes and transfers.',
+    outcome: 'Adopted by over 500 businesses within 3 months, processing $200K+ in transfers monthly.',
+    techStack: ['Flutter', 'Laravel', 'PostgreSQL', 'AWS Lambda'],
+    liveUrl: 'https://phospay.com'
   },
 ];
 
