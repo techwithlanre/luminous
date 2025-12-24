@@ -47,7 +47,7 @@ const Hero: React.FC = () => {
 
         {/* Headline */}
         <motion.h1
-          className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-8 leading-tight tracking-tight max-w-6xl"
+          className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-8 leading-tight tracking-tight max-w-6xl text-balance"
         >
           <div className="overflow-hidden p-2">
             <motion.div

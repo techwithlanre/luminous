@@ -18,10 +18,10 @@ const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
                 Expertise
             </span>
         </div>
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-heading font-bold text-white max-w-5xl mx-auto flex flex-col items-center gap-2">
-            <TextReveal text="End-to-End Product Development —" />
-            <TextReveal text="Done Right" theme="primary" delay={0.4} />
+        <div className="text-center mb-16 px-4">
+          <h2 className="text-xl sm:text-4xl md:text-6xl font-heading font-bold text-white max-w-5xl mx-auto leading-tight flex flex-col items-center gap-4 text-balance">
+            <TextReveal text="End-to-End Product Development" className="justify-center" />
+            <TextReveal text="Done Right" theme="primary" delay={0.4} className="justify-center" />
           </h2>
         </div>
 

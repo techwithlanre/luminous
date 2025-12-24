@@ -23,7 +23,7 @@ const About: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" 
+              src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
               alt="Product Team Collaboration" 
               className="w-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
               loading="lazy"
@@ -32,11 +32,9 @@ const About: React.FC = () => {
         </div>
 
         <div className="order-1 md:order-2">
-          <h2 className="text-4xl md:text-6xl font-heading font-bold mb-8 text-white leading-tight">
+          <h2 className="text-xl sm:text-4xl md:text-6xl font-heading font-bold mb-8 text-white leading-tight flex flex-col gap-2 text-balance">
             <TextReveal text={ABOUT_CONTENT.headlineStart} />
-            <span className="block mt-2">
-                <TextReveal text={ABOUT_CONTENT.headlineEnd} theme="primary" delay={0.4} />
-            </span>
+            <TextReveal text={ABOUT_CONTENT.headlineEnd} theme="primary" delay={0.4} />
           </h2>
           
           <motion.p
