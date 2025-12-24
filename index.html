@@ -31,7 +31,6 @@
     <link rel="manifest" href="/manifest.json" />
     
     <!-- Preloads for Performance -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Grotesk:wght@700&display=swap" as="style" />
     <link rel="preload" href="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" as="image" />
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FF4D00'/><text x='50' y='55' font-family='sans-serif' font-weight='900' font-size='60' text-anchor='middle' fill='white' dominant-baseline='middle'>C</text></svg>" />
@@ -43,10 +42,20 @@
     <meta property="whatsapp:title" content="Cloudom Systems | Scalable Product Agency" />
     <meta property="whatsapp:description" content="We build high-performance digital products for startups and enterprises." />
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      />
+    </noscript>
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -104,73 +113,7 @@
       ]
     </script>
     
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              heading: ['Space Grotesk', 'sans-serif'],
-            },
-            colors: {
-              primary: '#FF4D00', // The vibrant orange from the screenshot
-              secondary: '#FFFFFF', // White
-              accent: '#FF4D00', // Orange as accent
-              dark: '#000000', // Pure Black background
-              'dark-lighter': '#0a0a0a', // Slightly lighter black for contrast
-              'surface': '#111111', // Card background
-            },
-            animation: {
-              'spin-slow': 'spin 8s linear infinite',
-              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            }
-          },
-        },
-      }
-    </script>
-    <style>
-      body {
-        background-color: #000000;
-        color: #f8fafc;
-        overflow-x: hidden;
-      }
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 10px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #000000;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #333333;
-        border-radius: 5px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #FF4D00;
-      }
-      .gradient-text {
-        background: linear-gradient(to right, #ffffff, #a3a3a3);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      .orange-gradient-text {
-        background: linear-gradient(to right, #FF4D00, #ff8c00);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      .glass {
-        background: rgba(10, 10, 10, 0.8);
-        backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      .nav-glass {
-        background: rgba(20, 20, 20, 0.6);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      }
-    </style>
+    
   <script type="importmap">
 {
   "imports": {
