@@ -77,7 +77,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 cursor-pointer"
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary-dark hover:text-white transition-all duration-300 cursor-pointer"
                   aria-label={`Visit our ${label} page`}
                 >
                   <Icon size={18} />
@@ -87,7 +87,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
 
           <div>
-            <h4 className="font-bold text-lg mb-6 text-white">Quick Links</h4>
+            <h3 className="font-bold text-lg mb-6 text-white">Quick Links</h3>
             <ul className="space-y-4">
               {[
                 { name: 'Services', page: 'services', hash: undefined },
@@ -109,7 +109,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
 
           <div>
-            <h4 className="font-bold text-lg mb-6 text-white">Newsletter</h4>
+            <h3 className="font-bold text-lg mb-6 text-white">Newsletter</h3>
             <p className="text-gray-400 text-sm mb-4">Subscribe to get the latest tech insights.</p>
             
             <form onSubmit={handleSubscribe} className="flex flex-col space-y-3">
@@ -135,8 +135,8 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <button 
                 type="submit" 
                 disabled={status === 'loading' || status === 'success'}
-                className={`bg-primary text-white font-bold py-2 rounded-lg transition-all duration-300 text-sm cursor-pointer flex items-center justify-center gap-2 ${
-                  status === 'success' ? 'bg-green-600 hover:bg-green-700' : 'hover:bg-orange-600'
+                className={`bg-primary-dark text-white font-bold py-2 rounded-lg transition-all duration-300 text-sm cursor-pointer flex items-center justify-center gap-2 ${
+                  status === 'success' ? 'bg-green-600 hover:bg-green-700' : 'hover:bg-primary-dark/90'
                 }`}
               >
                 {status === 'loading' ? (
@@ -160,19 +160,19 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5">
           <div className="flex flex-col md:flex-row items-center gap-4">
-               <p className="text-gray-500 text-sm">© {new Date().getFullYear()} Cloudom Systems.</p>
-               <div className="flex gap-4 text-xs text-gray-600">
+               <p className="text-gray-400 text-sm">© {new Date().getFullYear()} Cloudom Systems.</p>
+               <div className="flex gap-4 text-xs text-gray-400">
                     <a 
                       href="/privacy" 
                       onClick={(e) => handleNavClick(e, 'privacy')}
-                      className="hover:text-gray-400"
+                      className="hover:text-white"
                     >
                       Privacy Policy
                     </a>
                     <a 
                       href="/terms" 
                       onClick={(e) => handleNavClick(e, 'terms')}
-                      className="hover:text-gray-400"
+                      className="hover:text-white"
                     >
                       Terms of Service
                     </a>

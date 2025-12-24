@@ -34,7 +34,7 @@ const Portfolio: React.FC = () => {
                     aria-pressed={filter === cat}
                     className={`px-5 py-2 rounded-full border text-sm transition-all duration-300 capitalize cursor-pointer ${
                         filter === cat
-                        ? 'bg-primary text-white border-primary'
+                        ? 'bg-primary-dark text-white border-primary-dark'
                         : 'bg-transparent text-gray-400 border-white/10 hover:border-white hover:text-white'
                     }`}
                     >
@@ -79,7 +79,7 @@ const Portfolio: React.FC = () => {
                                 {project.title}
                             </h3>
                         </div>
-                        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white group-hover:bg-primary group-hover:text-white transition-all">
+                        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white group-hover:bg-primary-dark group-hover:text-white transition-all">
                             <ArrowUpRight size={16} />
                         </div>
                     </div>
@@ -87,7 +87,7 @@ const Portfolio: React.FC = () => {
                     
                     {project.outcome && (
                          <div className="mt-auto pt-4 border-t border-white/5">
-                            <p className="text-xs text-gray-500 font-bold uppercase">Outcome</p>
+                            <p className="text-xs text-gray-400 font-bold uppercase">Outcome</p>
                             <p className="text-white text-sm font-medium">{project.outcome}</p>
                         </div>
                     )}
@@ -134,7 +134,7 @@ const Portfolio: React.FC = () => {
                             <img src={proj.image} alt={`${proj.title} Showcase`} className="w-full h-full object-cover" />
                             <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
                             <div className="absolute bottom-6 left-6 md:left-10">
-                                <span className="px-3 py-1 rounded-full bg-primary text-white text-xs font-bold uppercase tracking-wide mb-2 inline-block">{proj.category}</span>
+                                <span className="px-3 py-1 rounded-full bg-primary-dark text-white text-xs font-bold uppercase tracking-wide mb-2 inline-block">{proj.category}</span>
                                 <h3 id="modal-title" className="text-4xl md:text-5xl font-heading font-bold text-white">{proj.title}</h3>
                             </div>
                         </div>
@@ -160,13 +160,13 @@ const Portfolio: React.FC = () => {
                             
                             <div className="space-y-6">
                                 <div>
-                                    <h5 className="text-sm font-bold text-gray-500 uppercase mb-3">Tech Stack</h5>
+                                    <h5 className="text-sm font-bold text-gray-400 uppercase mb-3">Tech Stack</h5>
                                     <div className="flex flex-wrap gap-2">
                                         {proj.techStack?.map(tech => (
                                             <span key={tech} className="px-3 py-1 bg-white/5 border border-white/10 rounded-md text-sm text-gray-300">
                                                 {tech}
                                             </span>
-                                        )) || <span className="text-gray-500">Various Technologies</span>}
+                                        )) || <span className="text-gray-400">Various Technologies</span>}
                                     </div>
                                 </div>
                                 

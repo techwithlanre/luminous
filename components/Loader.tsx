@@ -49,7 +49,7 @@ const Loader: React.FC<LoaderProps> = ({ onComplete }) => {
             />
         </motion.div>
         <motion.h1 
-          className="mt-8 text-xl tracking-[0.5em] text-gray-500 uppercase"
+          className="mt-8 text-xl tracking-[0.5em] text-gray-400 uppercase"
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 2, repeat: Infinity }}
         >

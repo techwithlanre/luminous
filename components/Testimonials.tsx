@@ -29,8 +29,8 @@ const Testimonials: React.FC = () => {
           <h2 className="text-4xl md:text-6xl font-heading font-bold text-white">What Our Clients Say</h2>
         </motion.div>
 
-        <div className="relative bg-dark border border-white/5 p-8 md:p-16 rounded-3xl shadow-2xl">
-          <Quote className="absolute top-8 left-8 text-primary/20 w-16 h-16" />
+          <div className="relative bg-dark border border-white/5 p-8 md:p-16 rounded-3xl shadow-2xl">
+          <Quote className="absolute top-8 left-8 text-primary/20 w-16 h-16" aria-hidden="true" />
           
           <div className="relative overflow-hidden min-h-[300px] flex items-center justify-center">
             <AnimatePresence mode="wait">
@@ -61,7 +61,7 @@ const Testimonials: React.FC = () => {
                     className="w-16 h-16 rounded-full border-2 border-primary mb-4 object-cover"
                     loading="lazy"
                   />
-                  <h4 className="font-bold text-lg text-white">{TESTIMONIALS[current].name}</h4>
+                  <p className="font-bold text-lg text-white">{TESTIMONIALS[current].name}</p>
                   <p className="text-primary text-sm">{TESTIMONIALS[current].role}, {TESTIMONIALS[current].company}</p>
                 </div>
               </motion.div>
@@ -69,13 +69,23 @@ const Testimonials: React.FC = () => {
           </div>
 
           <div className="absolute top-1/2 -translate-y-1/2 left-4 md:-left-6">
-            <button onClick={prev} className="p-3 bg-dark border border-white/10 rounded-full hover:bg-white hover:text-dark transition-colors cursor-pointer text-white">
-              <ChevronLeft />
+            <button
+              type="button"
+              onClick={prev}
+              className="p-3 bg-dark border border-white/10 rounded-full hover:bg-white hover:text-dark transition-colors cursor-pointer text-white"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft aria-hidden="true" />
             </button>
           </div>
           <div className="absolute top-1/2 -translate-y-1/2 right-4 md:-right-6">
-            <button onClick={next} className="p-3 bg-dark border border-white/10 rounded-full hover:bg-white hover:text-dark transition-colors cursor-pointer text-white">
-              <ChevronRight />
+            <button
+              type="button"
+              onClick={next}
+              className="p-3 bg-dark border border-white/10 rounded-full hover:bg-white hover:text-dark transition-colors cursor-pointer text-white"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -85,8 +95,11 @@ const Testimonials: React.FC = () => {
             {TESTIMONIALS.map((_, idx) => (
                 <button 
                     key={idx}
+                    type="button"
                     onClick={() => setCurrent(idx)}
                     className={`h-2 rounded-full transition-all duration-300 ${current === idx ? 'w-8 bg-primary' : 'w-2 bg-gray-800'}`}
+                    aria-label={`Go to testimonial ${idx + 1}`}
+                    aria-current={current === idx ? 'true' : undefined}
                 />
             ))}
         </div>

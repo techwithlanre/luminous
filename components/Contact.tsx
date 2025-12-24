@@ -92,7 +92,7 @@ const Contact: React.FC = () => {
                 <MapPin />
               </div>
               <div>
-                <h4 className="font-bold text-lg text-white">Headquarters</h4>
+                <h3 className="font-bold text-lg text-white">Headquarters</h3>
                 <p className="text-gray-400">Block 1 Flat 5, Ijebu Ode Close, Area 2. Garki Abuja</p>
               </div>
             </div>
@@ -102,7 +102,7 @@ const Contact: React.FC = () => {
                 <Mail />
               </div>
               <div>
-                <h4 className="font-bold text-lg text-white">Email Us</h4>
+                <h3 className="font-bold text-lg text-white">Email Us</h3>
                 <p className="text-gray-400">hello@cloudomsystems.com</p>
               </div>
             </div>
@@ -191,7 +191,7 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-primary text-white font-bold py-4 rounded-lg hover:bg-orange-600 transition-colors flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full bg-primary-dark text-white font-bold py-4 rounded-lg hover:bg-primary-dark/90 transition-colors flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 aria-label={loading ? "Sending message" : "Schedule Free Consultation"}
               >
                 {loading ? (

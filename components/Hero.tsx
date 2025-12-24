@@ -90,7 +90,7 @@ const Hero: React.FC = () => {
             href="https://calendly.com/techwithlanre/product"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-4 bg-primary text-white rounded-full font-bold transition-all duration-300 md:shadow-[0_0_20px_rgba(255,77,0,0.4)] md:hover:shadow-[0_0_60px_rgba(255,77,0,0.7)] hover:scale-105 hover:bg-orange-500 active:scale-95 flex items-center gap-2 group"
+            className="px-8 py-4 bg-primary-dark text-white rounded-full font-bold transition-all duration-300 md:shadow-[0_0_20px_rgba(255,77,0,0.4)] md:hover:shadow-[0_0_60px_rgba(255,77,0,0.7)] hover:scale-105 hover:bg-primary-dark/90 active:scale-95 flex items-center gap-2 group"
           >
             <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             {HERO_CONTENT.ctaPrimary}

@@ -202,7 +202,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`group flex items-center gap-2 rounded-full text-white text-sm font-bold transition-all duration-300 ${
-                            scrolled ? 'w-10 h-10 p-0 justify-center bg-primary' : 'px-5 py-2.5 bg-primary hover:bg-orange-600'
+                            scrolled ? 'w-10 h-10 p-0 justify-center bg-primary-dark' : 'px-5 py-2.5 bg-primary-dark hover:bg-primary-dark/90'
                         }`}
                         aria-label="Start a Project"
                     >
@@ -256,7 +256,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3 }}
-                            className="w-full mt-4 p-4 bg-primary rounded-xl text-white font-bold flex justify-center items-center gap-2"
+                            className="w-full mt-4 p-4 bg-primary-dark rounded-xl text-white font-bold flex justify-center items-center gap-2"
                         >
                             Let's Talk <ArrowUpRight size={18} />
                         </motion.a>

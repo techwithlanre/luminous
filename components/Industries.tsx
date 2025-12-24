@@ -82,7 +82,7 @@ const Industries: React.FC = () => {
               >
                 <SpotlightCard className="rounded-2xl h-full p-8 hover:border-primary/50 transition-colors duration-500">
                   <div className="flex flex-col h-full items-start">
-                    <div className="mb-6 p-4 rounded-xl bg-white/5 border border-white/10 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <div className="mb-6 p-4 rounded-xl bg-white/5 border border-white/10 text-primary group-hover:scale-110 group-hover:bg-primary-dark group-hover:text-white transition-all duration-300">
                       <Icon size={32} strokeWidth={1.5} />
                     </div>
                     
@@ -94,7 +94,7 @@ const Industries: React.FC = () => {
                       {industry.description}
                     </p>
 
-                    <div className="mt-auto pt-6 w-full border-t border-white/5 flex items-center justify-between text-sm font-medium text-gray-500 group-hover:text-primary transition-colors">
+                    <div className="mt-auto pt-6 w-full border-t border-white/5 flex items-center justify-between text-sm font-medium text-gray-400 group-hover:text-primary transition-colors">
                       <span>View Solutions</span>
                       <span className="text-xl group-hover:translate-x-1 transition-transform duration-300">→</span>
                     </div>

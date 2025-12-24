@@ -54,7 +54,7 @@ const Pricing: React.FC = () => {
                       <p className="text-primary text-sm font-bold uppercase tracking-wider mb-2">{card.title}</p>
                       <h4 className="text-3xl font-bold text-white mb-2">{card.price}</h4>
                       {card.subtitle && (
-                        <p className="text-gray-500 text-sm">{card.subtitle}</p>
+                        <p className="text-gray-400 text-sm">{card.subtitle}</p>
                       )}
                     </div>
 
@@ -63,7 +63,7 @@ const Pricing: React.FC = () => {
                       href="https://calendly.com/techwithlanre/product"
                       target="_blank"
                       rel="noopener noreferrer" 
-                      className="w-full bg-white/5 border border-white/10 text-white font-bold py-3 rounded-full mb-8 hover:bg-primary hover:border-primary transition-all duration-300 flex items-center justify-center gap-2 group-hover:scale-[1.02]"
+                      className="w-full bg-white/5 border border-white/10 text-white font-bold py-3 rounded-full mb-8 hover:bg-primary-dark hover:border-primary-dark transition-all duration-300 flex items-center justify-center gap-2 group-hover:scale-[1.02]"
                     >
                       <ArrowUpRight size={16} />
                       {card.buttonText}
