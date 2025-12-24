@@ -37,9 +37,13 @@ const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 + 0.5 }}
                   onClick={() => onNavigate('services')}
+                  role="button"
+                  aria-label={`Learn more about our ${service.title} services`}
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onNavigate('services'); }}
                 >
                     <div>
-                        <div className="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
                              <Icon size={28} />
                         </div>
                         <h3 className="text-2xl font-heading font-bold mb-4 text-white group-hover:text-primary transition-colors">
@@ -51,7 +55,7 @@ const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
                     </div>
                     <div className="flex items-center text-sm font-bold text-white mt-auto">
                          <span className="mr-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">Learn more</span>
-                         <ArrowUpRight size={16} className="group-hover:text-primary transition-colors" />
+                         <ArrowUpRight size={16} className="group-hover:text-primary transition-colors" aria-hidden="true" />
                     </div>
                 </motion.div>
              );

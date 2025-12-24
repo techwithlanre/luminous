@@ -5,27 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cloudom Systems | Scalable Digital Product Development</title>
     <meta name="description" content="Cloudom Systems is a digital product agency specializing in MVP development, custom web & mobile apps, UI/UX design, and enterprise digital transformation." />
-    <meta name="keywords" content="digital product agency, MVP development, web development, mobile app development, UI/UX design, enterprise software, scalable solutions" />
+    <meta name="keywords" content="digital product agency, MVP development, web development, mobile app development, UI/UX design, enterprise software, scalable solutions, software architecture, product thinking" />
     <meta name="author" content="Cloudom Systems" />
     <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#FF4D00" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Cloudom Systems" />
     <meta property="og:url" content="https://www.cloudomsystems.com/" />
     <meta property="og:title" content="Cloudom Systems | Scalable Digital Product Development" />
     <meta property="og:description" content="From MVP to enterprise-ready platforms, we design, develop, and launch powerful solutions that scale with your vision." />
     <meta property="og:image" content="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" />
+    <meta property="og:image:alt" content="Cloudom Systems Team Collaboration" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:site" content="@cloudomsystems" />
     <meta property="twitter:url" content="https://www.cloudomsystems.com/" />
     <meta property="twitter:title" content="Cloudom Systems | Scalable Digital Product Development" />
     <meta property="twitter:description" content="From MVP to enterprise-ready platforms, we design, develop, and launch powerful solutions that scale with your vision." />
     <meta property="twitter:image" content="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" />
 
     <link rel="canonical" href="https://www.cloudomsystems.com/" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Preloads for Performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Grotesk:wght@700&display=swap" as="style" />
+    <link rel="preload" href="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" as="image" />
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FF4D00'/><text x='50' y='55' font-family='sans-serif' font-weight='900' font-size='60' text-anchor='middle' fill='white' dominant-baseline='middle'>C</text></svg>" />
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FF4D00'/><text x='50' y='55' font-family='sans-serif' font-weight='900' font-size='60' text-anchor='middle' fill='white' dominant-baseline='middle'>C</text></svg>" />
+    
+    <!-- Additional Social Meta for LinkedIn/WhatsApp -->
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="whatsapp:title" content="Cloudom Systems | Scalable Product Agency" />
+    <meta property="whatsapp:description" content="We build high-performance digital products for startups and enterprises." />
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,23 +50,58 @@
     
     <!-- Structured Data -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Cloudom Systems",
-        "url": "https://www.cloudomsystems.com",
-        "logo": "https://www.cloudomsystems.com/logo.png",
-        "sameAs": [
-          "https://www.linkedin.com/company/cloudom-systems",
-          "https://twitter.com/cloudomsystems"
-        ],
-        "contactPoint": {
-          "@type": "ContactPoint",
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Cloudom Systems",
+          "url": "https://www.cloudomsystems.com",
+          "logo": "https://www.cloudomsystems.com/logo.png",
+          "sameAs": [
+            "https://www.linkedin.com/company/cloudom-systems",
+            "https://twitter.com/cloudomsystems",
+            "https://facebook.com/cloudomsystems",
+            "https://instagram.com/cloudomsystems"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-555-0123-456",
+            "contactType": "Sales",
+            "email": "hello@cloudom.systems"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Cloudom Systems",
+          "url": "https://www.cloudomsystems.com",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.cloudomsystems.com/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          "name": "Cloudom Systems",
+          "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
+          "url": "https://www.cloudomsystems.com",
           "telephone": "+1-555-0123-456",
-          "contactType": "Sales",
-          "email": "hello@cloudom.systems"
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Digital Product Studio",
+            "addressLocality": "London",
+            "addressCountry": "UK"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.5074,
+            "longitude": -0.1278
+          },
+          "priceRange": "$$$"
         }
-      }
+      ]
     </script>
     
     <script>
@@ -99,11 +151,13 @@
       .gradient-text {
         background: linear-gradient(to right, #ffffff, #a3a3a3);
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
       }
       .orange-gradient-text {
         background: linear-gradient(to right, #FF4D00, #ff8c00);
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
       }
       .glass {

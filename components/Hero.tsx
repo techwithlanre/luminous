@@ -109,17 +109,19 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
+            role="list"
+            aria-label="Key features"
         >
-            <div className="flex items-center gap-2">
-                <Users className="text-primary" size={20} />
+            <div className="flex items-center gap-2" role="listitem">
+                <Users className="text-primary" size={20} aria-hidden="true" />
                 <span>Agile Squads</span>
             </div>
-            <div className="flex items-center gap-2">
-                <Code2 className="text-primary" size={20} />
+            <div className="flex items-center gap-2" role="listitem">
+                <Code2 className="text-primary" size={20} aria-hidden="true" />
                 <span>Scalable Architecture</span>
             </div>
-            <div className="flex items-center gap-2">
-                <PenTool className="text-primary" size={20} />
+            <div className="flex items-center gap-2" role="listitem">
+                <PenTool className="text-primary" size={20} aria-hidden="true" />
                 <span>Product Thinking</span>
             </div>
         </motion.div>

@@ -124,8 +124,9 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                     onClick={(e) => { e.preventDefault(); onNavigate('home', '#hero'); }}
                     className="flex items-center gap-2 group relative z-[101] shrink-0"
                     aria-label="Cloudom Systems Homepage"
+                    title="Home"
                 >
-                    <motion.div layout="position" className="w-8 h-8 bg-primary rounded-full flex items-center justify-center transform transition-transform duration-300 group-hover:rotate-12">
+                    <motion.div layout="position" className="w-8 h-8 bg-primary rounded-full flex items-center justify-center transform transition-transform duration-300 group-hover:rotate-12" aria-hidden="true">
                         <span className="text-white font-heading font-bold text-sm">C</span>
                     </motion.div>
                     <AnimatePresence mode="popLayout">

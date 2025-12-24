@@ -119,8 +119,8 @@ export const PORTFOLIO: Project[] = [
   },
   {
     id: '3',
-    title: 'LearnLoop EdTech',
-    category: 'enterprise',
+    title: 'Phospay',
+    category: 'fintech',
     image: 'https://picsum.photos/seed/edtechproj/800/600',
     description: 'AI-driven personalized learning path generator for universities.',
     problem: 'Universities struggled to offer personalized curriculum guidance at scale.',

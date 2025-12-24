@@ -59,6 +59,7 @@ const Testimonials: React.FC = () => {
                     src={TESTIMONIALS[current].avatar}
                     alt={TESTIMONIALS[current].name}
                     className="w-16 h-16 rounded-full border-2 border-primary mb-4 object-cover"
+                    loading="lazy"
                   />
                   <h4 className="font-bold text-lg text-white">{TESTIMONIALS[current].name}</h4>
                   <p className="text-primary text-sm">{TESTIMONIALS[current].role}, {TESTIMONIALS[current].company}</p>

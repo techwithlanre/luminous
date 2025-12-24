@@ -56,8 +56,8 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
-            <a href="/" onClick={(e) => handleNavClick(e, 'home', '#hero')} className="flex items-center gap-2 mb-6 group w-fit" aria-label="Cloudom Systems Home">
-               <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
+            <a href="/" onClick={(e) => handleNavClick(e, 'home', '#hero')} className="flex items-center gap-2 mb-6 group w-fit" aria-label="Cloudom Systems Home" title="Home">
+               <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center" aria-hidden="true">
                     <span className="text-white font-heading font-bold text-lg">C</span>
                </div>
                <span className="text-2xl font-heading font-bold text-white">CLOUDOM</span>
