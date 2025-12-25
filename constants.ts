@@ -1,7 +1,7 @@
 import { 
   Rocket, Code, Palette, Smartphone, Globe, Megaphone, 
   BarChart, Layers, Zap, Shield, Users, Award, 
-  Server, ShoppingCart, CreditCard, Activity, Truck, GraduationCap
+  Server, ShoppingCart, CreditCard, Activity, Truck, GraduationCap, Cpu
 } from 'lucide-react';
 import { Service, Project, TimelineItem, Testimonial, Stat, PricingSection, TeamMember, Industry } from './types';
 
@@ -50,6 +50,12 @@ export const SERVICES: Service[] = [
     title: 'Enterprise Transformation',
     description: 'Upgrade legacy systems, integrate modern technologies, and future-proof your enterprise platforms.',
     icon: Layers,
+  },
+  {
+    id: '6',
+    title: 'AI Automation',
+    description: 'Automate workflows, handle support, and turn business knowledge into AI assistants that save time and reduce costs.',
+    icon: Cpu,
   },
 ];
 
@@ -241,6 +247,37 @@ export const PRICING_SECTIONS: PricingSection[] = [
           'Native performance',
           'App Store & Play Store deployment',
           'Offline capabilities'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'ai',
+    title: 'AI',
+    highlightWord: 'Automation',
+    cards: [
+      {
+        title: 'Workflow Automation',
+        price: 'AI Ops',
+        subtitle: '2-6 Weeks',
+        buttonText: 'Automate Work',
+        features: [
+          'AI agents for repetitive tasks',
+          'Lead intake & qualification automation',
+          'Customer support workflows',
+          'Data extraction & summarization'
+        ]
+      },
+      {
+        title: 'AI Integrations',
+        price: 'AI Platform',
+        subtitle: 'Ongoing',
+        buttonText: 'Integrate AI',
+        features: [
+          'CRM / Slack / Email integrations',
+          'Secure role-based access',
+          'Observability & evaluation',
+          'Cost controls and guardrails'
         ]
       }
     ]
