@@ -25,6 +25,19 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, onBack }) => {
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
+    const previousTitle = document.title;
+    document.title = 'Blog | Cloudom Systems';
+    return () => {
+      document.title = previousTitle;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!post?.title) return;
+    document.title = `${post.title} | Cloudom Systems`;
+  }, [post?.title]);
+
+  useEffect(() => {
     if (!host || !slug) return;
     let cancelled = false;
 
@@ -157,4 +170,3 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, onBack }) => {
 };
 
 export default BlogPost;
-
