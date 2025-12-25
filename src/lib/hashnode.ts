@@ -21,6 +21,8 @@ export type HashnodePostListItem = {
 
 export type HashnodePost = HashnodePostListItem & {
   subtitle?: string | null;
+  authorName?: string | null;
+  authorProfilePictureUrl?: string | null;
   contentHtml: string;
 };
 
@@ -163,6 +165,7 @@ export async function getHashnodePostBySlug(params: {
           readTimeInMinutes
           coverImage { url }
           tags { name slug }
+          author { name profilePicture }
           content { html }
         }
       }
@@ -194,6 +197,8 @@ export async function getHashnodePostBySlug(params: {
           .map((t: any) => ({ name: String(t.name ?? ''), slug: String(t.slug ?? '') }))
           .filter((t: HashnodeTag) => t.name && t.slug)
       : [],
+    authorName: p.author?.name ? String(p.author.name) : null,
+    authorProfilePictureUrl: p.author?.profilePicture ? String(p.author.profilePicture) : null,
     contentHtml: String(p.content?.html ?? ''),
   };
 
@@ -246,4 +251,3 @@ export function sanitizeHtml(html: string): string {
   walk(template.content);
   return template.innerHTML;
 }
-

@@ -18,6 +18,14 @@ function isPlainLeftClick(e: React.MouseEvent): boolean {
   return e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;
 }
 
+function getMetaTag(attr: 'name' | 'property', key: string): HTMLMetaElement | null {
+  return document.head.querySelector(`meta[${attr}="${CSS.escape(key)}"]`);
+}
+
+function getCanonicalLink(): HTMLLinkElement | null {
+  return document.head.querySelector('link[rel="canonical"]');
+}
+
 const BlogPost: React.FC<BlogPostProps> = ({ slug, onBack }) => {
   const host = useMemo(() => getHashnodePublicationHost(), []);
   const [post, setPost] = useState<HashnodePost | null>(null);
@@ -25,17 +33,138 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, onBack }) => {
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
+    const isPostReady = Boolean(post?.title);
+    const origin = window.location.origin;
+    const canonicalUrl = `${origin}/blog/${encodeURIComponent(slug)}`;
+
+    const fallbackOgImage =
+      getMetaTag('property', 'og:image')?.content ||
+      'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80';
+
+    const title = isPostReady ? `${post!.title} | Cloudom Systems` : 'Blog | Cloudom Systems';
+    const description =
+      (post?.brief || post?.subtitle || 'Read the latest insights from Cloudom Systems.').trim();
+    const ogImage = (post?.coverImageUrl || fallbackOgImage).trim();
+
+    const managedNodes: HTMLElement[] = [];
+    const metaSnapshots: Array<{ el: HTMLMetaElement; prev: string | null }> = [];
+    const linkSnapshots: Array<{ el: HTMLLinkElement; prev: string | null }> = [];
     const previousTitle = document.title;
-    document.title = 'Blog | Cloudom Systems';
+
+    const setMeta = (attr: 'name' | 'property', key: string, content: string) => {
+      let el = getMetaTag(attr, key);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attr, key);
+        el.setAttribute('data-managed-seo', 'true');
+        document.head.appendChild(el);
+        managedNodes.push(el);
+      } else {
+        metaSnapshots.push({ el, prev: el.getAttribute('content') });
+      }
+      el.setAttribute('content', content);
+    };
+
+    const setCanonical = (href: string) => {
+      let el = getCanonicalLink();
+      if (!el) {
+        el = document.createElement('link');
+        el.setAttribute('rel', 'canonical');
+        el.setAttribute('data-managed-seo', 'true');
+        document.head.appendChild(el);
+        managedNodes.push(el);
+      } else {
+        linkSnapshots.push({ el, prev: el.getAttribute('href') });
+      }
+      el.setAttribute('href', href);
+    };
+
+    document.title = title;
+    setMeta('name', 'description', description);
+    setCanonical(canonicalUrl);
+
+    setMeta('property', 'og:type', isPostReady ? 'article' : 'website');
+    setMeta('property', 'og:site_name', 'Cloudom Systems');
+    setMeta('property', 'og:url', canonicalUrl);
+    setMeta('property', 'og:title', title);
+    setMeta('property', 'og:description', description);
+    setMeta('property', 'og:image', ogImage);
+    setMeta('property', 'og:image:alt', isPostReady ? post!.title : 'Cloudom Systems');
+
+    setMeta('property', 'twitter:card', 'summary_large_image');
+    setMeta('property', 'twitter:site', '@cloudomsystems');
+    setMeta('property', 'twitter:url', canonicalUrl);
+    setMeta('property', 'twitter:title', title);
+    setMeta('property', 'twitter:description', description);
+    setMeta('property', 'twitter:image', ogImage);
+
+    if (isPostReady) {
+      setMeta('property', 'article:published_time', post!.publishedAt);
+      const jsonLdId = 'blogpost-jsonld';
+      const previousJsonLd = document.getElementById(jsonLdId);
+      if (previousJsonLd) {
+        managedNodes.push(previousJsonLd);
+        previousJsonLd.remove();
+      }
+
+      const ld: any[] = [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: post!.title,
+          description,
+          datePublished: post!.publishedAt,
+          url: canonicalUrl,
+          mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+          image: ogImage ? [ogImage] : undefined,
+          author: post!.authorName ? { '@type': 'Person', name: post!.authorName } : undefined,
+          publisher: { '@type': 'Organization', name: 'Cloudom Systems', url: origin },
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: origin },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: `${origin}/blog` },
+            { '@type': 'ListItem', position: 3, name: post!.title, item: canonicalUrl },
+          ],
+        },
+      ];
+
+      const script = document.createElement('script');
+      script.id = jsonLdId;
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify(ld);
+      script.setAttribute('data-managed-seo', 'true');
+      document.head.appendChild(script);
+      managedNodes.push(script);
+    }
+
     return () => {
+      for (const snap of metaSnapshots) {
+        if (snap.prev == null) snap.el.removeAttribute('content');
+        else snap.el.setAttribute('content', snap.prev);
+      }
+      for (const snap of linkSnapshots) {
+        if (snap.prev == null) snap.el.removeAttribute('href');
+        else snap.el.setAttribute('href', snap.prev);
+      }
+      for (const node of managedNodes) {
+        if (node.getAttribute('data-managed-seo') === 'true') {
+          node.remove();
+        }
+      }
       document.title = previousTitle;
     };
-  }, []);
-
-  useEffect(() => {
-    if (!post?.title) return;
-    document.title = `${post.title} | Cloudom Systems`;
-  }, [post?.title]);
+  }, [
+    slug,
+    post?.title,
+    post?.brief,
+    post?.subtitle,
+    post?.coverImageUrl,
+    post?.publishedAt,
+    post?.authorName,
+  ]);
 
   useEffect(() => {
     if (!host || !slug) return;
