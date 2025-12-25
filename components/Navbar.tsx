@@ -88,6 +88,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     { name: 'Services', page: 'home', hash: '#services', icon: Layers },
     { name: 'Industries', page: 'home', hash: '#industries', icon: Globe },
     { name: 'Work', page: 'home', hash: '#portfolio', icon: Briefcase },
+    { name: 'Blog', page: 'blog', hash: undefined, icon: Cpu },
     { name: 'Contact', page: 'home', hash: '#contact', icon: Mail },
   ];
 
@@ -162,7 +163,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                 <div className="hidden lg:flex items-center gap-1">
                 {navLinks.map((link) => {
                     const effectiveHash = activeHash ?? window.location.hash;
-                    const isActive = currentPage === link.page && effectiveHash === link.hash;
+                    const isActive = currentPage === link.page && (link.hash ? effectiveHash === link.hash : true);
                     return (
                     <button
                         key={link.name}
@@ -233,7 +234,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                         {navLinks.map((link) => {
                             const Icon = link.icon;
                             const effectiveHash = activeHash ?? window.location.hash;
-                            const isActive = currentPage === link.page && effectiveHash === link.hash;
+                            const isActive = currentPage === link.page && (link.hash ? effectiveHash === link.hash : true);
                             return (
                                 <button
                                     key={link.name}

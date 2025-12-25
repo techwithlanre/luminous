@@ -50,3 +50,84 @@ body {
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
+
+.hashnode-content {
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+.hashnode-content > * + * {
+  margin-top: 1.25rem;
+}
+
+.hashnode-content h1,
+.hashnode-content h2,
+.hashnode-content h3,
+.hashnode-content h4 {
+  color: #ffffff;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-top: 2.25rem;
+}
+
+.hashnode-content h1 { font-size: 2.25rem; }
+.hashnode-content h2 { font-size: 1.8rem; }
+.hashnode-content h3 { font-size: 1.4rem; }
+.hashnode-content h4 { font-size: 1.15rem; }
+
+.hashnode-content p {
+  color: #e5e7eb;
+}
+
+.hashnode-content a {
+  color: #FF4D00;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hashnode-content a:hover {
+  color: #ff8c00;
+}
+
+.hashnode-content ul,
+.hashnode-content ol {
+  padding-left: 1.25rem;
+}
+
+.hashnode-content li + li {
+  margin-top: 0.5rem;
+}
+
+.hashnode-content blockquote {
+  border-left: 3px solid rgba(255, 77, 0, 0.7);
+  padding-left: 1rem;
+  color: rgba(229, 231, 235, 0.9);
+}
+
+.hashnode-content pre {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 16px;
+  padding: 1rem;
+  overflow: auto;
+}
+
+.hashnode-content code {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 8px;
+  padding: 0.15rem 0.35rem;
+  font-size: 0.95em;
+}
+
+.hashnode-content pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.hashnode-content img {
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
