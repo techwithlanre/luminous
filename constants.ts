@@ -274,7 +274,7 @@ export const PRICING_SECTIONS: PricingSection[] = [
         subtitle: 'Ongoing',
         buttonText: 'Integrate AI',
         features: [
-          'CRM / Slack / Email integrations',
+          'N8N / CRM / Slack / Email integrations',
           'Secure role-based access',
           'Observability & evaluation',
           'Cost controls and guardrails'
