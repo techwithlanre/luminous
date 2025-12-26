@@ -19,9 +19,9 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import Blog from './components/Blog';
 import BlogPost from './components/BlogPost';
-import Careers from './components/Careers';
 import CareerPost from './components/CareerPost';
 import { initAnalytics, trackPageview, trackClick } from './src/lib/analytics';
+import Careers from './components/Careers';
 
 type ViewType = 'home' | 'services' | 'privacy' | 'terms' | 'blog' | 'blog-post' | 'careers' | 'career-post';
 
