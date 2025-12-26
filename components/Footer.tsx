@@ -93,6 +93,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 { name: 'Services', page: 'services', hash: undefined },
                 { name: 'About', page: 'home', hash: '#about' },
                 { name: 'Blog', page: 'blog', hash: undefined },
+                { name: 'Careers', page: 'careers', hash: undefined },
                 { name: 'Contact', page: 'home', hash: '#contact' },
                 { name: 'Work', page: 'home', hash: '#portfolio' }
               ].map((link) => (

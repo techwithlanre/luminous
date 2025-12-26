@@ -89,6 +89,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     { name: 'Industries', page: 'home', hash: '#industries', icon: Globe },
     { name: 'Work', page: 'home', hash: '#portfolio', icon: Briefcase },
     { name: 'Blog', page: 'blog', hash: undefined, icon: Cpu },
+    { name: 'Careers', page: 'careers', hash: undefined, icon: Briefcase },
     { name: 'Contact', page: 'home', hash: '#contact', icon: Mail },
   ];
 

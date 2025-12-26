@@ -19,34 +19,48 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import Blog from './components/Blog';
 import BlogPost from './components/BlogPost';
+import Careers from './components/Careers';
+import CareerPost from './components/CareerPost';
 import { initAnalytics, trackPageview, trackClick } from './src/lib/analytics';
 
-type ViewType = 'home' | 'services' | 'privacy' | 'terms' | 'blog' | 'blog-post';
+type ViewType = 'home' | 'services' | 'privacy' | 'terms' | 'blog' | 'blog-post' | 'careers' | 'career-post';
 
-function getRouteFromPathname(pathname: string): { view: ViewType; blogSlug: string | null } {
+function getRouteFromPathname(pathname: string): { view: ViewType; blogSlug: string | null; careerId: string | null } {
   const normalized = pathname.replace(/\/+$/, '') || '/';
-  if (normalized === '/privacy') return { view: 'privacy', blogSlug: null };
-  if (normalized === '/terms') return { view: 'terms', blogSlug: null };
-  if (normalized === '/blog') return { view: 'blog', blogSlug: null };
+  if (normalized === '/privacy') return { view: 'privacy', blogSlug: null, careerId: null };
+  if (normalized === '/terms') return { view: 'terms', blogSlug: null, careerId: null };
+  if (normalized === '/blog') return { view: 'blog', blogSlug: null, careerId: null };
   if (normalized.startsWith('/blog/')) {
     const rawSlug = normalized.slice('/blog/'.length).trim();
-    if (!rawSlug) return { view: 'blog', blogSlug: null };
+    if (!rawSlug) return { view: 'blog', blogSlug: null, careerId: null };
     try {
-      return { view: 'blog-post', blogSlug: decodeURIComponent(rawSlug) };
+      return { view: 'blog-post', blogSlug: decodeURIComponent(rawSlug), careerId: null };
     } catch (e) {
-      return { view: 'blog-post', blogSlug: rawSlug };
+      return { view: 'blog-post', blogSlug: rawSlug, careerId: null };
     }
   }
-  if (normalized === '/services') return { view: 'services', blogSlug: null };
-  return { view: 'home', blogSlug: null };
+  if (normalized === '/careers') return { view: 'careers', blogSlug: null, careerId: null };
+  if (normalized.startsWith('/careers/')) {
+    const rawId = normalized.slice('/careers/'.length).trim();
+    if (!rawId) return { view: 'careers', blogSlug: null, careerId: null };
+    try {
+      return { view: 'career-post', blogSlug: null, careerId: decodeURIComponent(rawId) };
+    } catch (e) {
+      return { view: 'career-post', blogSlug: null, careerId: rawId };
+    }
+  }
+  if (normalized === '/services') return { view: 'services', blogSlug: null, careerId: null };
+  return { view: 'home', blogSlug: null, careerId: null };
 }
 
-function getPathnameForView(view: ViewType, blogSlug: string | null): string {
+function getPathnameForView(view: ViewType, blogSlug: string | null, careerId: string | null): string {
   if (view === 'privacy') return '/privacy';
   if (view === 'terms') return '/terms';
   if (view === 'services') return '/services';
   if (view === 'blog') return '/blog';
   if (view === 'blog-post') return blogSlug ? `/blog/${encodeURIComponent(blogSlug)}` : '/blog';
+  if (view === 'careers') return '/careers';
+  if (view === 'career-post') return careerId ? `/careers/${encodeURIComponent(careerId)}` : '/careers';
   return '/';
 }
 
@@ -55,6 +69,7 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(false); 
   const [view, setView] = useState<ViewType>('home');
   const [blogSlug, setBlogSlug] = useState<string | null>(null);
+  const [careerId, setCareerId] = useState<string | null>(null);
 
   // Smooth scroll behavior is handled by CSS (html { scroll-behavior: smooth })
   useEffect(() => {
@@ -81,11 +96,13 @@ const App: React.FC = () => {
     const initial = getRouteFromPathname(window.location.pathname);
     setView(initial.view);
     setBlogSlug(initial.blogSlug);
+    setCareerId(initial.careerId);
 
     const handlePopState = () => {
       const next = getRouteFromPathname(window.location.pathname);
       setView(next.view);
       setBlogSlug(next.blogSlug);
+      setCareerId(next.careerId);
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -94,18 +111,22 @@ const App: React.FC = () => {
 
   // Send pageview events when SPA "view" changes
   useEffect(() => {
-    const path = view === 'blog-post' && blogSlug ? `/blog/${blogSlug}` : `/${view}`;
+    const path =
+      view === 'blog-post' && blogSlug ? `/blog/${blogSlug}` :
+      view === 'career-post' && careerId ? `/careers/${careerId}` :
+      `/${view}`;
     trackPageview(path);
-  }, [view, blogSlug]);
+  }, [view, blogSlug, careerId]);
 
   const navigateTo = (page: string, hash?: string) => {
     // Cast string to view type safely
-    const targetView = (['home', 'services', 'privacy', 'terms', 'blog'].includes(page)) ? page as ViewType : 'home';
+    const targetView = (['home', 'services', 'privacy', 'terms', 'blog', 'careers'].includes(page)) ? page as ViewType : 'home';
     
     setView(targetView);
     setBlogSlug(null);
+    setCareerId(null);
 
-    const pathname = getPathnameForView(targetView, null);
+    const pathname = getPathnameForView(targetView, null, null);
     try {
       window.history.pushState(null, '', hash ? `${pathname}${hash}` : pathname);
     } catch (e) {}
@@ -127,8 +148,19 @@ const App: React.FC = () => {
   const navigateToBlogPost = (slug: string) => {
     setView('blog-post');
     setBlogSlug(slug);
+    setCareerId(null);
     try {
-      window.history.pushState(null, '', getPathnameForView('blog-post', slug));
+      window.history.pushState(null, '', getPathnameForView('blog-post', slug, null));
+    } catch (e) {}
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
+  };
+
+  const navigateToCareerPost = (id: string) => {
+    setView('career-post');
+    setBlogSlug(null);
+    setCareerId(id);
+    try {
+      window.history.pushState(null, '', getPathnameForView('career-post', null, id));
     } catch (e) {}
     setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
   };
@@ -177,6 +209,14 @@ const App: React.FC = () => {
 
           {view === 'blog-post' && blogSlug && (
             <BlogPost slug={blogSlug} onBack={() => navigateTo('blog')} />
+          )}
+
+          {view === 'careers' && (
+            <Careers onOpenJob={navigateToCareerPost} />
+          )}
+
+          {view === 'career-post' && careerId && (
+            <CareerPost id={careerId} onBack={() => navigateTo('careers')} />
           )}
 
           {/* Contact and Footer are on all pages */}
