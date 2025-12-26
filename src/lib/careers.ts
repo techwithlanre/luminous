@@ -68,6 +68,10 @@ function parseEmploymentType(bodyMarkdown: string): string | null {
   return m?.[1]?.trim() || null;
 }
 
+function normalizeIssueState(state: unknown): CareerJob['state'] {
+  return String(state).toLowerCase() === 'closed' ? 'closed' : 'open';
+}
+
 async function githubRequest<T>(url: string, accept: string): Promise<T> {
   const res = await fetch(url, {
     method: 'GET',
@@ -114,7 +118,7 @@ export async function getCareerJobs(params: {
         id: String(it.id),
         number: Number(it.number),
         title: String(it.title ?? ''),
-        state: it.state === 'closed' ? 'closed' : 'open',
+        state: normalizeIssueState(it.state),
         createdAt: String(it.created_at ?? ''),
         updatedAt: String(it.updated_at ?? ''),
         url: String(it.html_url ?? ''),
@@ -162,7 +166,7 @@ export async function getCareerJobByNumber(params: {
     id: String(it.id),
     number: Number(it.number),
     title: String(it.title ?? ''),
-    state: it.state === 'closed' ? 'closed' : 'open',
+    state: normalizeIssueState(it.state),
     createdAt: String(it.created_at ?? ''),
     updatedAt: String(it.updated_at ?? ''),
     url: String(it.html_url ?? ''),
@@ -177,4 +181,3 @@ export async function getCareerJobByNumber(params: {
   writeCache(cacheKey, job);
   return job;
 }
-

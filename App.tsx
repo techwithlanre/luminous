@@ -9,7 +9,6 @@ import Timeline from './components/Timeline';
 import Stats from './components/Stats';
 import Testimonials from './components/Testimonials';
 import Pricing from './components/Pricing'; // Detailed Services List
-import Team from './components/Team';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
@@ -22,6 +21,7 @@ import BlogPost from './components/BlogPost';
 import CareerPost from './components/CareerPost';
 import { initAnalytics, trackPageview, trackClick } from './src/lib/analytics';
 import Careers from './components/Careers';
+import AiSupportChat from './components/AiSupportChat';
 
 type ViewType = 'home' | 'services' | 'privacy' | 'terms' | 'blog' | 'blog-post' | 'careers' | 'career-post';
 
@@ -222,6 +222,7 @@ const App: React.FC = () => {
           {/* Contact and Footer are on all pages */}
           <Contact />
           <Footer onNavigate={navigateTo} />
+          <AiSupportChat />
         </main>
       )}
     </>
