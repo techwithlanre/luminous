@@ -29,34 +29,34 @@ export const SERVICES: Service[] = [
   },
   {
     id: '2',
+    title: 'AI Automation',
+    description: 'Automate workflows, handle support, and turn business knowledge into AI assistants that save time and reduce costs.',
+    icon: Cpu,
+  },
+  {
+    id: '3',
     title: 'Custom Web & Mobile',
     description: 'Build cross-platform digital products using modern frameworks and best practices. Scalable, secure, and performance-driven.',
     icon: Smartphone,
   },
   {
-    id: '3',
+    id: '4',
     title: 'UI/UX Design',
     description: 'Create intuitive, delightful user experiences with design systems that evolve as your product grows.',
     icon: Palette,
   },
   {
-    id: '4',
+    id: '5',
     title: 'DevOps & Scalability',
     description: 'Infrastructure that scales with your business. Automated pipelines, cloud-native architecture, and performance optimization.',
     icon: Server,
   },
   {
-    id: '5',
+    id: '6',
     title: 'Enterprise Transformation',
     description: 'Upgrade legacy systems, integrate modern technologies, and future-proof your enterprise platforms.',
     icon: Layers,
-  },
-  {
-    id: '6',
-    title: 'AI Automation',
-    description: 'Automate workflows, handle support, and turn business knowledge into AI assistants that save time and reduce costs.',
-    icon: Cpu,
-  },
+  }
 ];
 
 export const INDUSTRIES: Industry[] = [
